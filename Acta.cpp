@@ -25,7 +25,7 @@ void Acta::mostrarActa(){
 }
 
 void Acta::llenarActa(){
-
+    
 }
 
 void Acta::exportarActa(){

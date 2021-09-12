@@ -32,7 +32,7 @@ public:
 	void modificarInfoCriterios();
 	void verHistorial();
 	void verActa(int codigo);
-	bool existeActa(int numero);
+	bool existeActa(int codigo);
 	void crearCriteriosAlActa(Acta acta);
 
 	//sets/gets

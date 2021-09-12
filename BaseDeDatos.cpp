@@ -9,11 +9,6 @@ BaseDeDatos::BaseDeDatos()
 
 void BaseDeDatos::crearActa() 
 {
-
-}
-
-void BaseDeDatos::llenarActa(int codigo) 
-{
     /*
     * 1. creamos un nuevo objeto de tipo acta
     * 2. pedimos al usuario los valores de los atributos y se los asignamos en el objeto
@@ -22,36 +17,52 @@ void BaseDeDatos::llenarActa(int codigo)
     * 4. adicionamos el acta al contenedor de actas
     * 5. incrementamos el consecutivo de actas
     */
-    string valorString;
-    Acta actaActual;
+    int codigo;
+    string fecha, autor, nombreTrabajo, director, codirector, jurado1, jurado2;
+    Trabajo tipoTrabajo;
+    cout << "Digite el codigo: ";
+    cin >> codigo;
+    cout << "Digite fecha: ";
+    cin >> fecha;
+    cout << "Digite autor: ";
+    cin >> autor;
+    cout << "Digite el nombre del trabajo: ";
+    cin >> nombreTrabajo;
+    cout << "Digite el nombre del director: ";
+    cin >> director;
+    cout << "Digite el nombre codirector: ";
+    cin >> codirector;
+    cout << "Digite el nombre del jurado1: ";
+    cin >> jurado1;
+    cout << "Digite el nombre del jurado2: ";
+    cin >> jurado2;
+    cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
+    cin >> nombreTrabajo;
+    Acta(codigo, fecha, autor, nombreTrabajo, director, codirector, jurado1, 
+         jurado2, crearCriterios(), tipoTrabajo);
+    this->consecutivoDeActas++;
+}
 
-    //pedimos al usuario la fecha y la asignamos al atributo respectivo
-    std::cout << "Digite fecha: ";
-    getline(cin, valorString);
-    actaActual.setFecha(valorString);
-    //pedimos al usuario el autor y la asignamos al atributo respectivo
-    std::cout << "Digite autor: ";
-    getline(cin, valorString);
-    actaActual.setAutor(valorString);
-    //pedimos al usuario el nombre del trabajo y la asignamos al atributo respectivo
-    std::cout << "Digite el nombre del trabajo: ";
-    getline(cin, valorString);
-    actaActual.setNombreTrabajo(valorString);
-
-    //asignamos el consecutivo al acta
-    actaActual.setNumero(this->consecutivoDeActas);
-    //Insertarmos los criterios actuales en el acta llamando crearCriteriosAlActa()
-    crearCriteriosAlActa(actaActual);
-    //adicionamos el acta al contenedor de actas
-    actasCalificadas[actaActual.getNumero()] = actaActual;
-
-
-
-
+void BaseDeDatos::llenarActa(int codigo) 
+{
+    if(existeActa(codigo)){
+        for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
+        pActa != this->actasPendientes.end(); pActa++){
+            if(pActa->getCodigo() == codigo){
+                pActa->llenarActa();
+                actasCalificadas.push_back(*pActa);
+                actasPendientes.erase(pActa);
+                pActa = actasPendientes.end();
+            }
+        }
+    }else{
+        cout << "No se encontro el acta.\n";
+    }
+    
 }
 
 
-void crearCriteriosAlActa(Acta acta)
+vector<Criterio> crearCriterios()
 {
     /*
     * 1. Para cada uno de los INFOCRITERIOS definidos en base de datos creamos un Criterio
@@ -70,7 +81,7 @@ void crearCriteriosAlActa(Acta acta)
     }
     
 
-
+    return criterios;
 }
 
 

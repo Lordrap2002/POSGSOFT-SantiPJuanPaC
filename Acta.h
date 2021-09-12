@@ -11,7 +11,7 @@ using std::cout;
 using std::string;
 using std::vector;
 
-enum Trabajo{aplicado, investigacion};
+enum Trabajo{aplicado = 1, investigacion = 2};
 
 enum Resultado{aprobado, reprobado};
 
