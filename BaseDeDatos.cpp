@@ -112,7 +112,6 @@ void BaseDeDatos::modificarInfoCriterios()
             break;
         }
     }while(opcion);
-    
 }
 
 void BaseDeDatos::verHistorial() 
@@ -175,6 +174,34 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
     cout << "Por favor escriba el peso porcentual del criterio en decimal: ";
     cin >> pesoPorcentual;
     return InfoCriterio(id, descripcion, pesoPorcentual);
+}
+
+void BaseDeDatos::importarDatos(){
+    ifstream archivoTemp;
+    int i, j, codigo;
+    string fecha, autor, nombreTrabajo, director,
+        codirector, jurado1, jurado2, comentariosGenerales, linea, word;
+    float notaFinal;
+    vector<string> datos;
+    //Trabajo tipoTrabajo;
+    //Resultado resultadoFinal;
+    archivoTemp.open("datos.csv");
+    getline(archivoTemp, linea);
+    consecutivoDeActas = stoi(linea);
+    for(i = 0; i < consecutivoDeActas; i++){
+        getline(archivoTemp, linea);
+        stringstream s(linea);
+        while(getline(s, word, ', ')) {
+            datos.push_back(word);
+        }
+        for(j = 0; j < 11; j++){
+            //guardar cada valor del vector dato en un acta y agrgarla al vector actas
+        }
+    }
+    archivoTemp.close();
+}
+void BaseDeDatos::exportarDatos(){
+
 }
 
 vector<Acta> BaseDeDatos::getActasPendientes() {

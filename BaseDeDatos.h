@@ -3,11 +3,12 @@
 
 #include <iostream>
 #include <string>
-#include <map>
 #include <vector>
 #include <iterator>
 #include "Acta.h"
 #include "InfoCriterio.h"
+#include <fstream>
+#include <strstream>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ public:
 	bool existeActa(int codigo);
 	vector<Criterio> crearCriterios();
 	InfoCriterio crearInfoCriterio();
+	void importarDatos();
+	void exportarDatos();
 
 	//sets/gets
 	vector<Acta> getActasPendientes();
