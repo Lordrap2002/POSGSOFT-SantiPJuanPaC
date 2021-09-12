@@ -4,7 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "BaseDeDatos.h"
-
+#include "Criterio.h"
 
 using std::cin;
 using std::cout;
@@ -15,6 +15,7 @@ class View
 {
 private:
 	BaseDeDatos sistema;
+	Criterio criterios;
 
 public:
 	View();
