@@ -6,7 +6,7 @@ View::View()
 
 void View::mostrarMenuEvaluador() 
 {
-    int opcion = -1;
+    int opcion = -1, codigo;
     do
     {
 
@@ -23,7 +23,7 @@ void View::mostrarMenuEvaluador()
             View::mostrarMenuEvaluador();
             break;
         case 2:
-            sistema.exportarActa();
+            sistema.exportarActa(codigo);
             break;
         }
 
