@@ -101,7 +101,18 @@ void BaseDeDatos::verHistorial()
 }
 
 void BaseDeDatos::verActa(int codigo) {
-    
+    if (existeActa(codigo)) {
+        for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
+            pActa != this->actasCalificadas.end(); pActa++) {
+            if (pActa->getCodigo() == codigo) {
+                pActa->mostrarActa();
+               pActa = actasCalificadas.end();
+            }
+        }
+    }
+    else {
+        cout << "No se encontro el acta.\n";
+    }
 }
 
 bool BaseDeDatos::existeActa(int codigo) {
