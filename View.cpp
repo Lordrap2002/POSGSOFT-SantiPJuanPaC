@@ -20,7 +20,7 @@ void View::mostrarMenuEvaluador()
         {
 
         case 1:
-            View::mostrarMenuEvaluador();
+            criterios.llenarCriterio();
             break;
         case 2:
             sistema.exportarActa(codigo);
