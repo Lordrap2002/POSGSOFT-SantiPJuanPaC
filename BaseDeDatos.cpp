@@ -62,7 +62,7 @@ void BaseDeDatos::llenarActa(int codigo)
 }
 
 
-vector<Criterio> crearCriterios()
+vector<Criterio> BaseDeDatos::crearCriterios()
 {
     /*
     * 1. Para cada uno de los INFOCRITERIOS definidos en base de datos creamos un Criterio
@@ -70,14 +70,14 @@ vector<Criterio> crearCriterios()
     */
 
     //Recorriendo el VECTOR de Infocriterios de la base de datos vamos a ir creando los criterios en el acta.
-    Criterio criterioActual;
+    Criterio criterioTemp;
+    vector<Criterio> criterios;
 
 
     for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
         pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++)
     {
-        criterioActual.setInfoCriterio(pInfoCriterio);
-        acta.adicionaCriterio(criterioActual);
+        criterios.push_back(criterioTemp);
     }
     
 

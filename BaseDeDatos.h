@@ -33,7 +33,8 @@ public:
 	void verHistorial();
 	void verActa(int codigo);
 	bool existeActa(int codigo);
-	void crearCriteriosAlActa(Acta acta);
+	vector<Criterio> crearCriterios();
+	void agregarInfoCriterio();
 
 	//sets/gets
 	vector<Acta> getActasPendientes();

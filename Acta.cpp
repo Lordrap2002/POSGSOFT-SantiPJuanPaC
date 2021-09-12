@@ -18,6 +18,7 @@ Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string 
     setJurado2(jurado2);
     setCriterios(criterios);
     setTipoTrabajo(tipoTrabajo);
+    setNotaFinal(0);
 }
 
 void Acta::mostrarActa(){
@@ -25,15 +26,31 @@ void Acta::mostrarActa(){
 }
 
 void Acta::llenarActa(){
-    
+    for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
+        pCriterio != this->criterios.end(); pCriterio++){
+            pCriterio->mostrarCriterio();
+            pCriterio->llenarCriterio();
+            
+    }
+    cout << "Por favor escriba los comentarios generales: ";
+    cin >> this->comentariosGenerales;
+    calcularNotaFinal();
+    if(this->notaFinal < 3.0){
+        this->resultadoFinal = reprobado;
+    }else{
+        this->resultadoFinal = aprobado;
+    }
 }
 
 void Acta::exportarActa(){
 
 }
 
-void adicionaCriterio(Criterio criterio){
-
+float Acta::calcularNotaFinal(){
+    for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
+        pCriterio != this->criterios.end(); pCriterio++){
+            this->notaFinal += pCriterio->getNotaCriterio();
+    }
 }
 
 int Acta::getCodigo(){

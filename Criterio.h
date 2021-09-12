@@ -11,14 +11,16 @@ using std::string;
 
 class Criterio{
     private:
-        float notaJurado1, notaJurado2, notaPromedio, notaFinal;
+        float notaJurado1, notaJurado2, notaPromedio, notaCriterio;
         string comentario1, comentario2, comentarioGeneral;
         InfoCriterio infoCriterio;
     public:
         Criterio();
-        float calcularNotaFinal();
+        float calcularNotaCriterio();
         float calcularNotaPromedio();
-        
+        void mostrarCriterio();
+        void llenarCriterio();
+
         //gets/sets
         float getNotaJurado1();
         void setNotaJurado1(float notaJurado1);
@@ -26,8 +28,8 @@ class Criterio{
         void setNotaJurado2(float notaJurado2);
         float getNotaPromedio();
         void setNotaPromedio(float notaPromedio);
-        float getNotaFinal();
-        void setNotaFinal(float notaFinal);
+        float getNotaCriterio();
+        void setNotaCriterio(float notaCriterio);
         string getComentario1();
         void setComentario1(string comentario1);
         string getComentario2();

@@ -5,12 +5,31 @@ Criterio::Criterio(){
 
 }
 
-float Criterio::calcularNotaFinal(){
+float Criterio::calcularNotaCriterio(){
     return this->notaPromedio * getInfoCriterio().getPesoPorcentual();
 }
 
 float Criterio::calcularNotaPromedio(){
     return (this->notaJurado1 + this->notaJurado2) / 2;
+}
+
+void Criterio::mostrarCriterio(){
+
+}
+
+void Criterio::llenarCriterio(){
+    cout << "Por favor escriba el comentario del jurado 1: ";
+    cin >> this->comentario1;
+    cout << "Por favor escriba la nota del jurado 1: ";
+    cin >> this->notaJurado1;
+    cout << "Por favor escriba el comentario del jurado 2: ";
+    cin >> this->comentario2;
+    cout << "Por favor escriba la nota del jurado 2: ";
+    cin >> this->notaJurado2;
+    cout << "Por favor escriba el comentario general del criterio: ";
+    cin >> this->comentarioGeneral;
+    calcularNotaPromedio();
+    calcularNotaCriterio();
 }
 
 float Criterio::getNotaJurado1(){
@@ -37,12 +56,12 @@ void Criterio::setNotaPromedio(float notaPromedio){
     this->notaPromedio = notaPromedio;
 }
 
-float Criterio::getNotaFinal(){
-    return this->notaFinal;
+float Criterio::getNotaCriterio(){
+    return this->notaCriterio;
 }
 
-void Criterio::setNotaFinal(float notaFinal){
-    this->notaFinal = notaFinal;
+void Criterio::setNotaCriterio(float notaCriterio){
+    this->notaCriterio = notaCriterio;
 }
 
 string Criterio::getComentario1(){
