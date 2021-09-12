@@ -17,7 +17,7 @@ void BaseDeDatos::crearActa()
     * 4. adicionamos el acta al contenedor de actas
     * 5. incrementamos el consecutivo de actas
     */
-    int codigo;
+    int codigo, valorTipoTrabajo;
     string fecha, autor, nombreTrabajo, director, codirector, jurado1, jurado2;
     Trabajo tipoTrabajo;
     cout << "Digite el codigo: ";
@@ -37,7 +37,8 @@ void BaseDeDatos::crearActa()
     cout << "Digite el nombre del jurado2: ";
     cin >> jurado2;
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
-    cin >> tipoTrabajo;
+    cin >> valorTipoTrabajo;
+    tipoTrabajo = valorTipoTrabajo;
     Acta(codigo, fecha, autor, nombreTrabajo, director, codirector, jurado1, 
          jurado2, crearCriterios(), tipoTrabajo);
     this->consecutivoDeActas++;
@@ -135,14 +136,14 @@ void BaseDeDatos::verActa(int codigo) {
 }
 
 bool BaseDeDatos::existeActa(int codigo) {
-    if (this->actasPendientes.find(codigo) != this->actasPendientes.end())
-    {
-        return true;
+    for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
+        pActa != this->actasPendientes.end(); pActa++){
+        if(pActa->getCodigo() == codigo){
+            return true;
+        }    
     }
-    else
-    {
-        return false;
-    }
+    return false;
+    
 }
 
 vector<Criterio> BaseDeDatos::crearCriterios()
