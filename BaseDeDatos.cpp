@@ -37,7 +37,7 @@ void BaseDeDatos::crearActa()
     cout << "Digite el nombre del jurado2: ";
     cin >> jurado2;
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
-    cin >> nombreTrabajo;
+    cin >> tipoTrabajo;
     Acta(codigo, fecha, autor, nombreTrabajo, director, codirector, jurado1, 
          jurado2, crearCriterios(), tipoTrabajo);
     this->consecutivoDeActas++;
