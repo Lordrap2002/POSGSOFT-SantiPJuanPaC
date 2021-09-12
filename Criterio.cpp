@@ -5,12 +5,12 @@ Criterio::Criterio(){
 
 }
 
-float Criterio::calcularNotaCriterio(){
-    return this->notaPromedio * getInfoCriterio().getPesoPorcentual();
+void Criterio::calcularNotaCriterio(){
+    setNotaCriterio(this->notaPromedio * getInfoCriterio().getPesoPorcentual());
 }
 
-float Criterio::calcularNotaPromedio(){
-    return (this->notaJurado1 + this->notaJurado2) / 2;
+void Criterio::calcularNotaPromedio(){
+    setNotaPromedio((this->notaJurado1 + this->notaJurado2) / 2);
 }
 
 void Criterio::mostrarCriterio(){
@@ -41,6 +41,20 @@ void Criterio::llenarCriterio(){
     calcularNotaPromedio();
     calcularNotaCriterio();
 }
+
+void Criterio::exportarCriterio(fstream *archivoTemp){
+    *archivoTemp << "Criterio #" << infoCriterio.getId() << endl
+        << "Descripcion: " << infoCriterio.getDescripcion() << endl
+        << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
+        << "Nota jurado 1" << getNotaJurado1() << endl
+        << "Coomentario jurado 1" << getComentario1() << endl
+        << "Nota jurado 2" << getNotaJurado2() << endl
+        << "Comentario jurado 2" << getComentario2() << endl
+        << "Comentario general del criterio: " << getComentarioGeneral() << endl
+        << "Nota promedio del criterio: " << getNotaPromedio << endl
+        << "Nota final del criterio: " << getNotaCriterio() << endl;
+}
+
 
 float Criterio::getNotaJurado1(){
     return this->notaJurado1;

@@ -87,7 +87,18 @@ vector<Criterio> BaseDeDatos::crearCriterios()
 
 void BaseDeDatos::exportarActa(int codigo) 
 {
-
+    if (existeActa(codigo)) {
+            for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
+                pActa != this->actasCalificadas.end(); pActa++) {
+                if (pActa->getCodigo() == codigo) {
+                    pActa->exportarActa();
+                    pActa = actasCalificadas.end();
+                }
+            }
+        }
+        else {
+            cout << "No se encontro el acta.\n";
+        }
 }
 
 void BaseDeDatos::modificarInfoCriterios() 

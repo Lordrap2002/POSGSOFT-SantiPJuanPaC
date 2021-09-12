@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "InfoCriterio.h"
+#include <fstream>
 
 using namespace std;
 
@@ -14,10 +15,11 @@ class Criterio{
         InfoCriterio infoCriterio;
     public:
         Criterio();
-        float calcularNotaCriterio();
-        float calcularNotaPromedio();
+        void calcularNotaCriterio();
+        void calcularNotaPromedio();
         void mostrarCriterio();
         void llenarCriterio();
+        void exportarCriterio(fstream *archivoTemp);
 
         //gets/sets
         float getNotaJurado1();

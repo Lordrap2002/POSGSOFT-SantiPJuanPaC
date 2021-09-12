@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "Criterio.h"
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
