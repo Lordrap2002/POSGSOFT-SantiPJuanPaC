@@ -4,9 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 
-using std::cin;
-using std::cout;
-using std::string;
+using namespace std;
 
 class InfoCriterio{
     private:

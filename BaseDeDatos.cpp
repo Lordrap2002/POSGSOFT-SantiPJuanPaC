@@ -106,7 +106,7 @@ void BaseDeDatos::verActa(int codigo) {
             pActa != this->actasCalificadas.end(); pActa++) {
             if (pActa->getCodigo() == codigo) {
                 pActa->mostrarActa();
-               pActa = actasCalificadas.end();
+                pActa = actasCalificadas.end();
             }
         }
     }

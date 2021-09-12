@@ -6,10 +6,7 @@
 #include "Criterio.h"
 #include <vector>
 
-using std::cin;
-using std::cout;
-using std::string;
-using std::vector;
+using namespace std;
 
 enum Trabajo{aplicado = 1, investigacion = 2};
 

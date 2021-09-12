@@ -22,7 +22,23 @@ Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string 
 }
 
 void Acta::mostrarActa(){
-
+    cout << "Acta #" << getCodigo() << endl
+        << "Fecha: " << getFecha() << endl
+        << "Autor: " << getAutor() << endl
+        << "Nombre del trabajo: " << getNombreTrabajo() << endl
+        << "Director: " << getDirector() << endl
+        << "Codirector: " << getCodirector() << endl
+        << "Jurado 1: " << getJurado1() << endl
+        << "Jurado 2: " << getJurado2() << endl
+        << "Tipo de trabajo: " << getTipoTrabajo() << endl
+        << "Criterios:" << endl;
+        for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
+            pCriterio != this->criterios.end(); pCriterio++){
+            pCriterio->mostrarCriterio();
+        }
+        cout << "Comentarios generales: " << getComentariosGenerales() << endl
+        << "Nota final: " << getNotaFinal() << endl
+        << "Resultado final: " << getResultadoFinal() << endl;
 }
 
 void Acta::llenarActa(){

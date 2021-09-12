@@ -5,9 +5,7 @@
 #include <stdlib.h>
 #include "InfoCriterio.h"
 
-using std::cin;
-using std::cout;
-using std::string;
+using namespace std;
 
 class Criterio{
     private:

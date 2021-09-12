@@ -9,12 +9,7 @@
 #include "Acta.h"
 #include "InfoCriterio.h"
 
-using std::cin;
-using std::cout;
-using std::getline;
-using std::iterator;
-using std::string;
-using std::vector;
+using namespace std;
 
 class BaseDeDatos 
 {

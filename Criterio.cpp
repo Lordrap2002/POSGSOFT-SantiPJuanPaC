@@ -14,8 +14,18 @@ float Criterio::calcularNotaPromedio(){
 }
 
 void Criterio::mostrarCriterio(){
-
+    cout << "Criterio #" << infoCriterio.getId() << endl
+        << "Descripcion: " << infoCriterio.getDescripcion() << endl
+        << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
+        << "Nota jurado 1" << getNotaJurado1() << endl
+        << "Coomentario jurado 1" << getComentario1() << endl
+        << "Nota jurado 2" << getNotaJurado2() << endl
+        << "Comentario jurado 2" << getComentario2() << endl
+        << "Comentario general del criterio: " << getComentarioGeneral() << endl
+        << "Nota promedio del criterio: " << getNotaPromedio << endl
+        << "Nota final del criterio: " << getNotaCriterio() << endl;
 }
+
 
 void Criterio::llenarCriterio(){
     cout << "Por favor escriba el comentario del jurado 1: ";
