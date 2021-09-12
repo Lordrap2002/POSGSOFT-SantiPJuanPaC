@@ -32,8 +32,8 @@ class Acta{
         void mostrarActa();
         void llenarActa();
         void exportarActa();
-        void adicionaCriterio(Criterio criterio);
-        float calcularNotaFinal();
+        //void adicionaCriterio(Criterio criterio);
+        void calcularNotaFinal();
 
         //gets/sets
         int getCodigo();

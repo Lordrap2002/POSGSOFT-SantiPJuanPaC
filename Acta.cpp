@@ -81,7 +81,7 @@ void Acta::exportarActa(){
     archivoTemp.close();
 }
 
-float Acta::calcularNotaFinal(){
+void Acta::calcularNotaFinal(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
             this->notaFinal += pCriterio->getNotaCriterio();

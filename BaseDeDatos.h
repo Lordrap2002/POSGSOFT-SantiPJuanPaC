@@ -29,7 +29,7 @@ public:
 	void verActa(int codigo);
 	bool existeActa(int codigo);
 	vector<Criterio> crearCriterios();
-	void agregarInfoCriterio();
+	InfoCriterio crearInfoCriterio();
 
 	//sets/gets
 	vector<Acta> getActasPendientes();
