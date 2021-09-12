@@ -13,7 +13,6 @@ using std::cin;
 using std::cout;
 using std::getline;
 using std::iterator;
-using std::map;
 using std::string;
 using std::vector;
 
@@ -21,31 +20,27 @@ class BaseDeDatos
 {
 private:
 	int consecutivoDeActas = 0;
-	map<int, Acta> actasCalificadas;
-	map<int, Acta> actasPendientes;
+	vector<Acta> actasCalificadas;
+	vector<Acta> actasPendientes;
 	vector<InfoCriterio> infoCriterios;
 
 public:
-	baseDeDatos();
+	BaseDeDatos();
 	void crearActa();
-	void llenarActa();
-	void exportarActa();
+	void llenarActa(int codigo);
+	void exportarActa(int codigo);
 	void modificarInfoCriterios();
 	void verHistorial();
-	void verActa();
-
+	void verActa(int codigo);
 	bool existeActa(int numero);
 	void crearCriteriosAlActa(Acta acta);
+
 	//sets/gets
-	int getActasPendientes();
-	void setActasPendientes(Acta acta);
-	int getActasCalificadas();
-	void setActasCalificadas(Acta acta);
-	int getInfoCriterios();
-	void setInfoCriterios(InfoCriterio infoCriterio;);
-
-
-
-
+	vector<Acta> getActasPendientes();
+	void setActasPendientes(vector<Acta> acta);
+	vector<Acta> getActasCalificadas();
+	void setActasCalificadas(vector<Acta> acta);
+	vector<InfoCriterio> getInfoCriterios();
+	void setInfoCriterios(vector<InfoCriterio> infoCriterio);
 };
 #endif /* !BASEDEDATOS_H */

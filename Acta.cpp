@@ -17,12 +17,16 @@ void Acta::exportarActa(){
 
 }
 
-int Acta::getNumero(){
-    return this->numero;
+void adicionaCriterio(Criterio criterio){
+
 }
 
-void Acta::setNumero(int numero){
-    this->numero = numero;
+int Acta::getCodigo(){
+    return this->codigo;
+}
+
+void Acta::setCodigo(int codigo){
+    this->codigo = codigo;
 }
 
 string Acta::getFecha(){
@@ -121,7 +125,3 @@ void Acta::setResultadoFinal(Resultado resultadoFinal){
     this->resultadoFinal = resultadoFinal;
 }
 
-
-void adicionaCriterio(Criterio criterio) {
-
-}

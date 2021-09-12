@@ -18,6 +18,8 @@ class Criterio{
         Criterio();
         float calcularNotaFinal();
         float calcularNotaPromedio();
+        
+        //gets/sets
         float getNotaJurado1();
         void setNotaJurado1(float notaJurado1);
         float getNotaJurado2();

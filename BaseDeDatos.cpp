@@ -12,7 +12,7 @@ void BaseDeDatos::crearActa()
 
 }
 
-void BaseDeDatos::llenarActa() 
+void BaseDeDatos::llenarActa(int codigo) 
 {
     /*
     * 1. creamos un nuevo objeto de tipo acta
@@ -43,7 +43,7 @@ void BaseDeDatos::llenarActa()
     //Insertarmos los criterios actuales en el acta llamando crearCriteriosAlActa()
     crearCriteriosAlActa(actaActual);
     //adicionamos el acta al contenedor de actas
-    actasCalificadas[actaActual.getNumero] = actaActual;
+    actasCalificadas[actaActual.getNumero()] = actaActual;
 
 
 
@@ -62,8 +62,8 @@ void crearCriteriosAlActa(Acta acta)
     Criterio criterioActual;
 
 
-    for (vector<InfoCriterio>::iterator pInfoCriterio = this.infoCriterios.begin();
-        pInfoCriterio != this.infoCriterios.end(); pInfoCriterio++)
+    for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+        pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++)
     {
         criterioActual.setInfoCriterio(pInfoCriterio);
         acta.adicionaCriterio(criterioActual);
@@ -74,12 +74,12 @@ void crearCriteriosAlActa(Acta acta)
 }
 
 
-void BaseDeDatos::exportarActa(int numero) 
+void BaseDeDatos::exportarActa(int codigo) 
 {
 
 }
 
-int BaseDeDatos::modificarInfoCriterios() 
+void BaseDeDatos::modificarInfoCriterios() 
 {
    
 }
@@ -89,30 +89,30 @@ void BaseDeDatos::verHistorial()
     
 }
 
-void BaseDeDatos::verActa(int numero) {
+void BaseDeDatos::verActa(int codigo) {
     
 }
 
-int BaseDeDatos::getActasPendientes() {
+vector<Acta> BaseDeDatos::getActasPendientes() {
     return actasPendientes;
 }
 
-void BaseDeDatos::setActasPendientes(int numero) {
+void BaseDeDatos::setActasPendientes(vector<Acta> actasPendientes) {
     this->actasPendientes = actasPendientes;
 }
 
-int BaseDeDatos::getActasCalificadas() {
+vector<Acta> BaseDeDatos::getActasCalificadas() {
     return actasCalificadas;
 }
 
-void BaseDeDatos::setActasCalificadas(int numero) {
+void BaseDeDatos::setActasCalificadas(vector<Acta> actasCalificadas) {
     this->actasCalificadas = actasCalificadas;
 }
 
-int BaseDeDatos::getInfoCriterios() {
+vector<InfoCriterio> BaseDeDatos::getInfoCriterios() {
     return infoCriterios;
 }
 
-void BaseDeDatos::setInfoCriterios(int id) {
+void BaseDeDatos::setInfoCriterios(vector<InfoCriterio> infoCriterio) {
     this->infoCriterios = infoCriterios;
 }

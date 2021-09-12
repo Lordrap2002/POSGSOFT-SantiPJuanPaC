@@ -15,6 +15,9 @@ class InfoCriterio{
         int id;
     public:
         InfoCriterio();
+        InfoCriterio(int id, string descripcion, float pesoPorcentual);
+        
+        //gets/sets
         string getDescripcion();
         void setDescripcion(string descripcion);
         float getPesoPorcentual();

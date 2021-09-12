@@ -18,7 +18,7 @@ enum Resultado{aprobado, reprobado};
 class Acta{
     //Atributos
     private:
-        int numero;
+        int codigo;
         string fecha, autor, nombreTrabajo, director,
             codirector, jurado1, jurado2, comentariosGenerales;
         float notaFinal;
@@ -31,10 +31,11 @@ class Acta{
         void mostrarActa();
         void llenarActa();
         void exportarActa();
+        void adicionaCriterio(Criterio criterio);
 
         //gets/sets
-        int getNumero();
-        void setNumero(int numero);
+        int getCodigo();
+        void setCodigo(int codigo);
         string getFecha();
         void setFecha(string fecha);
         string getAutor();
@@ -59,8 +60,6 @@ class Acta{
         void setTipoTrabajo(Trabajo tipoTrabajo);
         Resultado getResultadoFinal();
         void setResultadoFinal(Resultado resultadoFinal);
-
-        void adicionaCriterio(Criterio criterio);
 };
 
 #endif
