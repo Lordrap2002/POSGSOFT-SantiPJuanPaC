@@ -22,7 +22,7 @@ void Criterio::mostrarCriterio(){
         << "Nota jurado 2" << getNotaJurado2() << endl
         << "Comentario jurado 2" << getComentario2() << endl
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
-        << "Nota promedio del criterio: " << getNotaPromedio << endl
+        << "Nota promedio del criterio: " << getNotaPromedio() << endl
         << "Nota final del criterio: " << getNotaCriterio() << endl;
 }
 
@@ -51,7 +51,7 @@ void Criterio::exportarCriterio(fstream *archivoTemp){
         << "Nota jurado 2" << getNotaJurado2() << endl
         << "Comentario jurado 2" << getComentario2() << endl
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
-        << "Nota promedio del criterio: " << getNotaPromedio << endl
+        << "Nota promedio del criterio: " << getNotaPromedio() << endl
         << "Nota final del criterio: " << getNotaCriterio() << endl;
 }
 
