@@ -5,6 +5,12 @@ InfoCriterio::InfoCriterio(){
 
 }
 
+InfoCriterio::InfoCriterio(int id, string descripcion, float pesoPorcentual) {
+    setId(id);
+    setDescripcion(descripcion);
+    setPesoPorcentual(pesoPorcentual);
+}
+
 string InfoCriterio::getDescripcion(){
     return this->descripcion;
 }

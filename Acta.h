@@ -16,6 +16,7 @@ enum Trabajo{aplicado, investigacion};
 enum Resultado{aprobado, reprobado};
 
 class Acta{
+    //Atributos
     private:
         int numero;
         string fecha, autor, nombreTrabajo, director,
@@ -23,12 +24,15 @@ class Acta{
         float notaFinal;
         vector<Criterio> criterios;
         Trabajo tipoTrabajo;
-        Resultado resultadoFinal;  
+        Resultado resultadoFinal;
+    //Metodos
     public:
         Acta();
         void mostrarActa();
         void llenarActa();
         void exportarActa();
+
+        //gets/sets
         int getNumero();
         void setNumero(int numero);
         string getFecha();
@@ -55,6 +59,8 @@ class Acta{
         void setTipoTrabajo(Trabajo tipoTrabajo);
         Resultado getResultadoFinal();
         void setResultadoFinal(Resultado resultadoFinal);
+
+        void adicionaCriterio(Criterio criterio);
 };
 
 #endif

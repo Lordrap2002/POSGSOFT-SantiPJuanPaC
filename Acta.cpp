@@ -120,3 +120,8 @@ Resultado Acta::getResultadoFinal(){
 void Acta::setResultadoFinal(Resultado resultadoFinal){
     this->resultadoFinal = resultadoFinal;
 }
+
+
+void adicionaCriterio(Criterio criterio) {
+
+}
