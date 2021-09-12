@@ -104,6 +104,17 @@ void BaseDeDatos::verActa(int codigo) {
     
 }
 
+bool BaseDeDatos::existeActa(int codigo) {
+    if (this->actasPendientes.find(codigo) != this->actasPendientes.end())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 vector<Acta> BaseDeDatos::getActasPendientes() {
     return actasPendientes;
 }
