@@ -5,6 +5,21 @@ Acta::Acta(){
 
 }
 
+Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
+            string codirector, string jurado1, string jurado2, vector<Criterio> criterios,
+            Trabajo tipoTrabajo){
+    setCodigo(codigo);
+    setFecha(fecha);
+    setAutor(autor);
+    setNombreTrabajo(nombreTrabajo);
+    setDirector(director);
+    setCodirector(codirector);
+    setJurado1(jurado1);
+    setJurado2(jurado2);
+    setCriterios(criterios);
+    setTipoTrabajo(tipoTrabajo);
+}
+
 void Acta::mostrarActa(){
 
 }

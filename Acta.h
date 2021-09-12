@@ -28,6 +28,9 @@ class Acta{
     //Metodos
     public:
         Acta();
+        Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
+            string codirector, string jurado1, string jurado2, vector<Criterio> criterios,
+            Trabajo tipoTrabajo);
         void mostrarActa();
         void llenarActa();
         void exportarActa();
