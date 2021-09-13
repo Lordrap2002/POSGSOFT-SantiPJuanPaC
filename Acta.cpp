@@ -21,6 +21,23 @@ Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string 
     setNotaFinal(0);
 }
 
+Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
+            string codirector, string jurado1, string jurado2, string comentariosGenerales, 
+            Trabajo tipoTrabajo, Resultado resultadoFinal, float notaFinal){
+    setCodigo(codigo);
+    setFecha(fecha);
+    setAutor(autor);
+    setNombreTrabajo(nombreTrabajo);
+    setDirector(director);
+    setCodirector(codirector);
+    setJurado1(jurado1);
+    setJurado2(jurado2);
+    setComentariosGenerales(comentariosGenerales);
+    setTipoTrabajo(tipoTrabajo);
+    setResultadoFinal(resultadoFinal);
+    setNotaFinal(notaFinal);
+}
+
 void Acta::mostrarActa(){
     cout << "Acta #" << getCodigo() << endl
         << "Fecha: " << getFecha() << endl

@@ -8,7 +8,7 @@
 #include "Acta.h"
 #include "InfoCriterio.h"
 #include <fstream>
-#include <strstream>
+#include <sstream>
 
 using namespace std;
 
@@ -33,6 +33,8 @@ public:
 	InfoCriterio crearInfoCriterio();
 	void importarDatos();
 	void exportarDatos();
+	Trabajo identificarTipoTrabajo(int opcion);
+	Resultado identificarResultado(int opcion);
 
 	//sets/gets
 	vector<Acta> getActasPendientes();

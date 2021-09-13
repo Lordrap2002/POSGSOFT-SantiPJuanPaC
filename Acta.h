@@ -29,6 +29,9 @@ class Acta{
         Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
             string codirector, string jurado1, string jurado2, vector<Criterio> criterios,
             Trabajo tipoTrabajo);
+        Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
+            string codirector, string jurado1, string jurado2, string comentariosGenerales, 
+            Trabajo tipoTrabajo, Resultado resultadoFinal, float notaFinal);
         void mostrarActa();
         void llenarActa();
         void exportarActa();

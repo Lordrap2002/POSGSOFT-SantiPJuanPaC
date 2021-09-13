@@ -38,7 +38,7 @@ void BaseDeDatos::crearActa()
     cin >> jurado2;
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
     cin >> valorTipoTrabajo;
-    tipoTrabajo = valorTipoTrabajo;
+    tipoTrabajo = identificarTipoTrabajo(valorTipoTrabajo);
     Acta(codigo, fecha, autor, nombreTrabajo, director, codirector, jurado1, 
          jurado2, crearCriterios(), tipoTrabajo);
     this->consecutivoDeActas++;
@@ -177,32 +177,76 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
 }
 
 void BaseDeDatos::importarDatos(){
-    ifstream archivoTemp;
     int i, j, codigo;
-    string fecha, autor, nombreTrabajo, director,
-        codirector, jurado1, jurado2, comentariosGenerales, linea, word;
+    string linea, word;
     float notaFinal;
     vector<string> datos;
-    //Trabajo tipoTrabajo;
-    //Resultado resultadoFinal;
+    ifstream archivoTemp;
+    Trabajo tipoTrabajo;
+    Resultado resultadoFinal;
     archivoTemp.open("datos.csv");
     getline(archivoTemp, linea);
     consecutivoDeActas = stoi(linea);
     for(i = 0; i < consecutivoDeActas; i++){
         getline(archivoTemp, linea);
         stringstream s(linea);
-        while(getline(s, word, ', ')) {
+        while(getline(s, word, ',')){
             datos.push_back(word);
         }
-        for(j = 0; j < 11; j++){
-            //guardar cada valor del vector dato en un acta y agrgarla al vector actas
-        }
+        codigo = stoi(datos[0]);
+        tipoTrabajo = identificarTipoTrabajo(stoi(datos[9]));
+        resultadoFinal = identificarResultado(stoi(datos[10]));
+        notaFinal = stoi(datos[11]);
+        actasCalificadas.push_back(Acta(codigo, datos[1], datos[2], datos[3], datos[4], 
+                                    datos[5], datos[6], datos[7], datos[8], tipoTrabajo,
+                                    resultadoFinal, notaFinal));
     }
     archivoTemp.close();
 }
 void BaseDeDatos::exportarDatos(){
-
+    int i;
+    fstream archivoTemp;
+    archivoTemp.open("datos.csv");
+    archivoTemp << consecutivoDeActas;
+    for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
+        pActa != this->actasCalificadas.end(); pActa++){
+        archivoTemp << pActa->getCodigo() << ","
+                    << pActa->getFecha() << ","
+                    << pActa->getAutor() << ","
+                    << pActa->getNombreTrabajo() << ","
+                    << pActa->getDirector() << ","
+                    << pActa->getCodirector() << ","
+                    << pActa->getJurado1() << ","
+                    << pActa->getJurado2() << ","
+                    << pActa->getComentariosGenerales() << ","
+                    << pActa->getTipoTrabajo() << ","
+                    << pActa->getResultadoFinal() << ","
+                    << pActa->getNotaFinal() << ","
+                    << endl;
+    }
+    archivoTemp.close();
 }
+
+Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
+    Trabajo tipoTrabajo;
+    if(opcion == 1){
+        tipoTrabajo = aplicado;
+    }else{
+        tipoTrabajo = investigacion;
+    }
+    return tipoTrabajo;
+}
+
+Resultado BaseDeDatos::identificarResultado(int opcion){
+    Resultado resultadoFinal;
+    if(opcion == 1){
+        resultadoFinal = aprobado;
+    }else{
+        resultadoFinal = reprobado;
+    }
+    return resultadoFinal;
+}
+
 
 vector<Acta> BaseDeDatos::getActasPendientes() {
     return actasPendientes;
