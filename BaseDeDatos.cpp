@@ -48,7 +48,7 @@ void BaseDeDatos::crearActa()
 void BaseDeDatos::llenarActa(int codigo) 
 {
     Acta actaTemp;
-    if(existeActa(codigo)){
+    if(existeActaPendiente(codigo)){
         for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
         pActa != this->actasPendientes.end(); pActa++){
             if(pActa->getCodigo() == codigo){
@@ -100,6 +100,7 @@ void BaseDeDatos::modificarInfoCriterios()
             for(i = 0; i < cantCriterios; i++){
                 infoCriterios.push_back(crearInfoCriterio());
             }
+            this->cantCriterios = cantCriterios;
             break;
         case 2:
             int id;
@@ -115,6 +116,7 @@ void BaseDeDatos::modificarInfoCriterios()
             break;
         case 3:
             infoCriterios.push_back(crearInfoCriterio());
+            this->cantCriterios++;
             break;
         }
     }while(opcion);
@@ -124,15 +126,12 @@ void BaseDeDatos::verHistorial()
 {
     for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++) {
-        if (pActa != this->actasCalificadas.end()) {
             pActa->mostrarActa();
-            pActa = actasCalificadas.end();
-        }
     }
 }
 
 void BaseDeDatos::verActa(int codigo) {
-    if (existeActa(codigo)) {
+    if (existeActaCalificada(codigo)) {
         for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
             pActa != this->actasCalificadas.end(); pActa++) {
             if (pActa->getCodigo() == codigo) {
@@ -146,9 +145,20 @@ void BaseDeDatos::verActa(int codigo) {
     }
 }
 
-bool BaseDeDatos::existeActa(int codigo) {
+bool BaseDeDatos::existeActaPendiente(int codigo) {
     for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
         pActa != this->actasPendientes.end(); pActa++){
+        if(pActa->getCodigo() == codigo){
+            return true;
+        }    
+    }
+    return false;
+    
+}
+
+bool BaseDeDatos::existeActaCalificada(int codigo) {
+    for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
+        pActa != this->actasCalificadas.end(); pActa++){
         if(pActa->getCodigo() == codigo){
             return true;
         }    
@@ -197,30 +207,44 @@ void BaseDeDatos::importarDatos(){
     Trabajo tipoTrabajo;
     Resultado resultadoFinal;
     archivoTemp.open("datos.csv");
-    getline(archivoTemp, linea);
-    consecutivoDeActas = stoi(linea);
-    for(i = 0; i < consecutivoDeActas; i++){
-        datos.clear();
+    if(archivoTemp.is_open()){   
         getline(archivoTemp, linea);
-        stringstream s(linea);
-        while(getline(s, word, ',')){
-            datos.push_back(word);
+        this->consecutivoDeActas = stoi("2");
+        getline(archivoTemp, linea);
+        this->cantCriterios = stoi("3");
+        for(i = 0; i < consecutivoDeActas; i++){
+            datos.clear();
+            getline(archivoTemp, linea);
+            stringstream s(linea);
+            while(getline(s, word, ',')){
+                datos.push_back(word);
+            }
+            tipoTrabajo = identificarTipoTrabajo(stoi(datos[9]));
+            resultadoFinal = identificarResultado(stoi(datos[10]));
+            actasCalificadas.push_back(Acta(stoi(datos[0]), datos[1], datos[2], datos[3], datos[4], 
+                                        datos[5], datos[6], datos[7], datos[8], tipoTrabajo,
+                                        resultadoFinal, stof(datos[11])));
         }
-        codigo = stoi(datos[0]);
-        tipoTrabajo = identificarTipoTrabajo(stoi(datos[9]));
-        resultadoFinal = identificarResultado(stoi(datos[10]));
-        notaFinal = stoi(datos[11]);
-        actasCalificadas.push_back(Acta(codigo, datos[1], datos[2], datos[3], datos[4], 
-                                    datos[5], datos[6], datos[7], datos[8], tipoTrabajo,
-                                    resultadoFinal, notaFinal));
+        for(i = 0; i < cantCriterios; i++){
+            datos.clear();
+            getline(archivoTemp, linea);
+            stringstream s(linea);
+            while(getline(s, word, ',')){
+                datos.push_back(word);
+            }
+            infoCriterios.push_back(InfoCriterio(stoi(datos[0]), datos[1], stof(datos[2])));
+        }
+        archivoTemp.close();
+    }else{
+        cout << "No se encontro el archivo .csv con los datos";
     }
-    archivoTemp.close();
 }
 void BaseDeDatos::exportarDatos(){
     int i;
-    fstream archivoTemp;
-    archivoTemp.open("datos.csv");
-    archivoTemp << consecutivoDeActas;
+    ofstream archivoTemp;
+    archivoTemp.open("datos.csv", ios::trunc);
+    archivoTemp << consecutivoDeActas << endl;
+    archivoTemp << cantCriterios << endl;
     for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++){
         archivoTemp << pActa->getCodigo() << ","
@@ -235,6 +259,13 @@ void BaseDeDatos::exportarDatos(){
                     << pActa->getTipoTrabajo() << ","
                     << pActa->getResultadoFinal() << ","
                     << pActa->getNotaFinal() << ","
+                    << endl;
+    }
+    for(vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+        pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++){
+        archivoTemp << pInfoCriterio->getId() << ","
+                    << pInfoCriterio->getDescripcion() << ","
+                    << pInfoCriterio->getPesoPorcentual() << ","
                     << endl;
     }
     archivoTemp.close();

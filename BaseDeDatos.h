@@ -15,7 +15,7 @@ using namespace std;
 class BaseDeDatos 
 {
 private:
-	int consecutivoDeActas = 0;
+	int consecutivoDeActas = 0, cantCriterios = 0;
 	vector<Acta> actasCalificadas;
 	vector<Acta> actasPendientes;
 	vector<InfoCriterio> infoCriterios;
@@ -28,7 +28,8 @@ public:
 	void modificarInfoCriterios();
 	void verHistorial();
 	void verActa(int codigo);
-	bool existeActa(int codigo);
+	bool existeActaPendiente(int codigo);
+	bool existeActaCalificada(int codigo);
 	vector<Criterio> crearCriterios();
 	InfoCriterio crearInfoCriterio();
 	void importarDatos();

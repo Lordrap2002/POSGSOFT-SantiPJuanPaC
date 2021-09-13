@@ -76,8 +76,9 @@ void Acta::llenarActa(){
 }
 
 void Acta::exportarActa(){
-    fstream archivoTemp;
-    archivoTemp.open( "actaprueba.txt", ios::trunc);
+    ofstream archivoTemp;
+    string nombreArchivo = this->nombreTrabajo + ".txt";
+    archivoTemp.open(nombreArchivo);
     archivoTemp << "Acta #" << getCodigo() << endl
         << "Fecha: " << getFecha() << endl
         << "Autor: " << getAutor() << endl
@@ -88,13 +89,15 @@ void Acta::exportarActa(){
         << "Jurado 2: " << getJurado2() << endl
         << "Tipo de trabajo: " << getTipoTrabajo() << endl
         << "Criterios:" << endl;
-        for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
-            pCriterio != this->criterios.end(); pCriterio++){
-            pCriterio->exportarCriterio(&archivoTemp);
-        }
-        archivoTemp << "Comentarios generales: " << getComentariosGenerales() << endl
-        << "Nota final: " << getNotaFinal() << endl
-        << "Resultado final: " << getResultadoFinal() << endl;
+    archivoTemp.close();
+    for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
+        pCriterio != this->criterios.end(); pCriterio++){
+        pCriterio->exportarCriterio(nombreArchivo);
+    }
+    archivoTemp.open( nombreArchivo, ios::app);
+    archivoTemp << "Comentarios generales: " << getComentariosGenerales() << endl
+    << "Nota final: " << getNotaFinal() << endl
+    << "Resultado final: " << getResultadoFinal() << endl;
     archivoTemp.close();
 }
 

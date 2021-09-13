@@ -19,7 +19,7 @@ class Criterio{
         void calcularNotaPromedio();
         void mostrarCriterio();
         void llenarCriterio();
-        void exportarCriterio(fstream *archivoTemp);
+        void exportarCriterio(string nombreArchivo);
 
         //gets/sets
         float getNotaJurado1();

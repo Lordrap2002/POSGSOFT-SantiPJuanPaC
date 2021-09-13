@@ -17,10 +17,10 @@ void Criterio::mostrarCriterio(){
     cout << "Criterio #" << infoCriterio.getId() << endl
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
         << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
-        << "Nota jurado 1" << getNotaJurado1() << endl
-        << "Coomentario jurado 1" << getComentario1() << endl
-        << "Nota jurado 2" << getNotaJurado2() << endl
-        << "Comentario jurado 2" << getComentario2() << endl
+        << "Nota jurado 1: " << getNotaJurado1() << endl
+        << "Coomentario jurado 1: " << getComentario1() << endl
+        << "Nota jurado 2: " << getNotaJurado2() << endl
+        << "Comentario jurado 2: " << getComentario2() << endl
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
         << "Nota promedio del criterio: " << getNotaPromedio() << endl
         << "Nota final del criterio: " << getNotaCriterio() << endl;
@@ -42,8 +42,10 @@ void Criterio::llenarCriterio(){
     calcularNotaCriterio();
 }
 
-void Criterio::exportarCriterio(fstream *archivoTemp){
-    *archivoTemp << "Criterio #" << infoCriterio.getId() << endl
+void Criterio::exportarCriterio(string nombreArchivo){
+    ofstream archivoTemp;
+    archivoTemp.open( nombreArchivo, ios::app);
+    archivoTemp << "Criterio #" << infoCriterio.getId() << endl
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
         << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
         << "Nota jurado 1" << getNotaJurado1() << endl
@@ -53,6 +55,7 @@ void Criterio::exportarCriterio(fstream *archivoTemp){
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
         << "Nota promedio del criterio: " << getNotaPromedio() << endl
         << "Nota final del criterio: " << getNotaCriterio() << endl;
+    archivoTemp.close();
 }
 
 
