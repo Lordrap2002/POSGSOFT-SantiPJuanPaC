@@ -1,4 +1,5 @@
 #include "View.h"
+#include <Windows.h>
 
 View::View()
 {
@@ -36,6 +37,7 @@ void View::mostrarMenuEvaluador()
 
 void View::mostrarMenuDirectora()
 {
+    system("cls");
     int opcion = -1;
     do
     {
@@ -62,6 +64,7 @@ void View::mostrarMenuDirectora()
 
 void View::mostrarMenuAsistente()
 {
+    system("cls");
     int opcion = -1;
     do
     {
@@ -88,6 +91,7 @@ void View::mostrarMenuAsistente()
 
 void View::mostrarMenu()
 {
+    system("cls");
     int opcion = -1;
     do
     {
