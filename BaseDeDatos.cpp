@@ -122,7 +122,13 @@ void BaseDeDatos::modificarInfoCriterios()
 
 void BaseDeDatos::verHistorial() 
 {
-    
+    for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
+        pActa != this->actasCalificadas.end(); pActa++) {
+        if (pActa != this->actasCalificadas.end()) {
+            pActa->mostrarActa();
+            pActa = actasCalificadas.end();
+        }
+    }
 }
 
 void BaseDeDatos::verActa(int codigo) {
