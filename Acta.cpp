@@ -61,7 +61,7 @@ void Acta::mostrarActa(){
 void Acta::llenarActa(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
-            pCriterio->mostrarCriterio();
+            //pCriterio->mostrarCriterio();
             pCriterio->llenarCriterio();
             
     }
@@ -77,7 +77,7 @@ void Acta::llenarActa(){
 
 void Acta::exportarActa(){
     fstream archivoTemp;
-    archivoTemp.open(getNombreTrabajo() + ".txt");
+    archivoTemp.open( "actaprueba.txt", ios::trunc);
     archivoTemp << "Acta #" << getCodigo() << endl
         << "Fecha: " << getFecha() << endl
         << "Autor: " << getAutor() << endl

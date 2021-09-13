@@ -39,21 +39,24 @@ void BaseDeDatos::crearActa()
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
     cin >> valorTipoTrabajo;
     tipoTrabajo = identificarTipoTrabajo(valorTipoTrabajo);
-    Acta(codigo, fecha, autor, nombreTrabajo, director, codirector, jurado1, 
-         jurado2, crearCriterios(), tipoTrabajo);
+    actasPendientes.push_back(Acta(codigo, fecha, autor, nombreTrabajo, 
+                                    director, codirector, jurado1, 
+                                    jurado2, crearCriterios(), tipoTrabajo));
     this->consecutivoDeActas++;
 }
 
 void BaseDeDatos::llenarActa(int codigo) 
 {
+    Acta actaTemp;
     if(existeActa(codigo)){
         for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
         pActa != this->actasPendientes.end(); pActa++){
             if(pActa->getCodigo() == codigo){
-                pActa->llenarActa();
-                actasCalificadas.push_back(*pActa);
+                actaTemp = *pActa;
+                actaTemp.llenarActa();
+                actasCalificadas.push_back(actaTemp);
                 actasPendientes.erase(pActa);
-                pActa = actasPendientes.end();
+                pActa = actasPendientes.end() - 1;
             }
         }
     }else{
@@ -64,18 +67,18 @@ void BaseDeDatos::llenarActa(int codigo)
 
 void BaseDeDatos::exportarActa(int codigo) 
 {
-    if (existeActa(codigo)) {
+//    if (existeActa(codigo)) {
             for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
                 pActa != this->actasCalificadas.end(); pActa++) {
                 if (pActa->getCodigo() == codigo) {
                     pActa->exportarActa();
-                    pActa = actasCalificadas.end();
+                    pActa = actasCalificadas.end() - 1;
                 }
             }
-        }
+/*        }
         else {
             cout << "No se encontro el acta.\n";
-        }
+        }*/
 }
 
 void BaseDeDatos::modificarInfoCriterios() 
@@ -88,6 +91,7 @@ void BaseDeDatos::modificarInfoCriterios()
         << "3. Agregar un nuevo criterio.\n"
         << "0. Salir.\n"
         << "Opcion: ";
+        cin >> opcion;
         switch(opcion){
         case 1:
             int i, cantCriterios;
@@ -101,11 +105,13 @@ void BaseDeDatos::modificarInfoCriterios()
             int id;
             cout << "Porfavor escriba el ID del criterio que va a modificar: ";
             cin >> id;
-            vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
-            while(pInfoCriterio->getId() - id){
-                pInfoCriterio++;
+            for(vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+                pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
+                if(pInfoCriterio->getId() == id){
+                    *pInfoCriterio = crearInfoCriterio();
+                    pInfoCriterio = this->infoCriterios.end();
+                }
             }
-            *pInfoCriterio = crearInfoCriterio();
             break;
         case 3:
             infoCriterios.push_back(crearInfoCriterio());
@@ -188,6 +194,7 @@ void BaseDeDatos::importarDatos(){
     getline(archivoTemp, linea);
     consecutivoDeActas = stoi(linea);
     for(i = 0; i < consecutivoDeActas; i++){
+        datos.clear();
         getline(archivoTemp, linea);
         stringstream s(linea);
         while(getline(s, word, ',')){
