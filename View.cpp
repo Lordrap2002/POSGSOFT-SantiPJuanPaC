@@ -15,6 +15,7 @@ void View::mostrarMenuEvaluador()
         cout << "1. Evalua trabajo de grado \n";
         cout << "2. Ver acta \n";
         cout << "3. Exporta trabajo de grado \n";
+        cout << "0. Salir \n";
         cout << "Digite la opcion: ";
         cin >> opcion;
         system("cls");
@@ -52,6 +53,7 @@ void View::mostrarMenuDirectora()
         cout << "Menu director/a\n";
         cout << "1. Modificar criterios \n";
         cout << "2. ver historial de actas \n";
+        cout << "0. Salir \n";
         cout << "Digite la opcion: ";
         cin >> opcion;
         system("cls");
@@ -80,6 +82,7 @@ void View::mostrarMenuAsistente()
         cout << "Menu asistente\n";
         cout << "1. crear acta \n";
         cout << "2. ver historial \n";
+        cout << "0. Salir \n";
         std::cout << "Digite la opcion: ";
         std::cin >> opcion;
         system("cls");
