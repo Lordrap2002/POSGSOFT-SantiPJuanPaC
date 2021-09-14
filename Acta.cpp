@@ -47,15 +47,17 @@ void Acta::mostrarActa(){
         << "Codirector: " << getCodirector() << endl
         << "Jurado 1: " << getJurado1() << endl
         << "Jurado 2: " << getJurado2() << endl
-        << "Tipo de trabajo: " << getTipoTrabajo() << endl
-        << "Criterios:" << endl;
+        << "Tipo de trabajo: ";
+        mostrarTipoTrabajo();
+        cout << "Criterios:" << endl;
         for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
             pCriterio != this->criterios.end(); pCriterio++){
             pCriterio->mostrarCriterio();
         }
         cout << "Comentarios generales: " << getComentariosGenerales() << endl
         << "Nota final: " << getNotaFinal() << endl
-        << "Resultado final: " << getResultadoFinal() << endl;
+        << "Resultado final: ";
+        mostrarResultadoFinal();
 }
 
 void Acta::llenarActa(){
@@ -106,6 +108,22 @@ void Acta::calcularNotaFinal(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
             this->notaFinal += pCriterio->getNotaCriterio();
+    }
+}
+
+void Acta::mostrarTipoTrabajo(){
+    if(this->tipoTrabajo == aplicado){
+        cout << "Aplicado" << endl;
+    }else{
+        cout << "Investigacion" << endl;
+    }
+}
+
+void Acta::mostrarResultadoFinal(){
+    if(this->resultadoFinal == aprobado){
+        cout << "Aprobado" << endl;
+    }else{
+        cout << "Reprobado" << endl;
     }
 }
 

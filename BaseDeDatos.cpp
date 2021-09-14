@@ -233,9 +233,11 @@ void BaseDeDatos::importarDatos(){
     archivoTemp.open("datos.csv");
     if(archivoTemp.is_open()){   
         getline(archivoTemp, linea);
-        this->consecutivoDeActas = stoi("2");
+        stringstream s(linea);
+        this->consecutivoDeActas = stoi(linea);
         getline(archivoTemp, linea);
-        this->cantCriterios = stoi("3");
+        stringstream s(linea);
+        this->cantCriterios = stoi(linea);
         for(i = 0; i < consecutivoDeActas; i++){
             datos.clear();
             getline(archivoTemp, linea);
@@ -298,7 +300,7 @@ void BaseDeDatos::exportarDatos(){
 
 Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
     Trabajo tipoTrabajo;
-    if(opcion == 1){
+    if(opcion == aplicado){
         tipoTrabajo = aplicado;
     }else{
         tipoTrabajo = investigacion;
@@ -308,7 +310,7 @@ Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
 
 Resultado BaseDeDatos::identificarResultado(int opcion){
     Resultado resultadoFinal;
-    if(opcion == 1){
+    if(opcion == aprobado){
         resultadoFinal = aprobado;
     }else{
         resultadoFinal = reprobado;

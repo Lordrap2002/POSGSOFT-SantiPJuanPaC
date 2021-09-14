@@ -35,8 +35,11 @@ class Acta{
         void mostrarActa();
         void llenarActa();
         void exportarActa();
-        //void adicionaCriterio(Criterio criterio);
         void calcularNotaFinal();
+        void mostrarTipoTrabajo();
+        void importarTipoTrabajo(int valor);
+        void mostrarResultadoFinal();
+        void importarResultadoFinal(int valor);
 
         //gets/sets
         int getCodigo();
