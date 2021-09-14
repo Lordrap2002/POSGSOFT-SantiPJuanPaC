@@ -47,6 +47,7 @@ void View::mostrarMenuDirectora()
         cout << "2. ver historial de actas \n";
         std::cout << "Digite la opcion: ";
         std::cin >> opcion;
+        system("cls");
 
         switch (opcion)
         {
@@ -74,6 +75,7 @@ void View::mostrarMenuAsistente()
         cout << "2. ver historial \n";
         std::cout << "Digite la opcion: ";
         std::cin >> opcion;
+        system("cls");
 
         switch (opcion)
         {
@@ -105,6 +107,7 @@ void View::mostrarMenu()
         cout << "0. Salir \n";
         std::cout << "Digite la opcion: ";
         std::cin >> opcion;
+        system("cls");
 
         switch (opcion)
         {
