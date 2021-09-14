@@ -36,6 +36,9 @@ public:
 	void exportarDatos();
 	Trabajo identificarTipoTrabajo(int opcion);
 	Resultado identificarResultado(int opcion);
+	bool existeCriterio(int id);
+	bool noExisteCriterio(int id);
+
 
 	//sets/gets
 	vector<Acta> getActasPendientes();

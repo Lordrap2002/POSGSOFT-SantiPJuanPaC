@@ -106,13 +106,21 @@ void BaseDeDatos::modificarInfoCriterios()
             int id;
             cout << "Porfavor escriba el ID del criterio que va a modificar: ";
             cin >> id;
-            for(vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
-                pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
-                if(pInfoCriterio->getId() == id){
-                    *pInfoCriterio = crearInfoCriterio();
-                    pInfoCriterio = this->infoCriterios.end();
+            if (existeCriterio(id))
+            {
+                for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+                    pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
+                    if (pInfoCriterio->getId() == id) {
+                        *pInfoCriterio = crearInfoCriterio();
+                        pInfoCriterio = this->infoCriterios.end();
+                    }
                 }
             }
+            else
+            {
+                cout << "No existe el criterio # \n" << id;
+            }
+            
             break;
         case 3:
             infoCriterios.push_back(crearInfoCriterio());
@@ -191,11 +199,18 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
     float pesoPorcentual;
     cout << "Por favor escriba el ID del criterio: ";
     cin >> id;
-    cout << "Por favor escriba la descripcion del criterio: ";
-    cin >> descripcion;
-    cout << "Por favor escriba el peso porcentual del criterio en decimal: ";
-    cin >> pesoPorcentual;
-    return InfoCriterio(id, descripcion, pesoPorcentual);
+    if (noExisteCriterio(id))
+    {
+        cout << "Por favor escriba la descripcion del criterio: ";
+        cin >> descripcion;
+        cout << "Por favor escriba el peso porcentual del criterio en decimal: ";
+        cin >> pesoPorcentual;
+        return InfoCriterio(id, descripcion, pesoPorcentual);
+    }
+    else {
+        cout << "Ya existe el criterio # \n" << id;
+    }
+    
 }
 
 void BaseDeDatos::importarDatos(){
@@ -289,6 +304,26 @@ Resultado BaseDeDatos::identificarResultado(int opcion){
         resultadoFinal = reprobado;
     }
     return resultadoFinal;
+}
+
+bool BaseDeDatos::existeCriterio(int id) {
+    for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+        pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
+        if (pInfoCriterio->getId() == id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool BaseDeDatos::noExisteCriterio(int id) {
+    for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
+        pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
+        if (pInfoCriterio->getId() != id) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
