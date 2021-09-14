@@ -23,19 +23,26 @@ void BaseDeDatos::crearActa()
     cout << "Digite el codigo: ";
     cin >> codigo;
     cout << "Digite fecha: ";
-    cin >> fecha;
+    fflush;
+    getline(cin, fecha);
     cout << "Digite autor: ";
-    cin >> autor;
+    fflush;
+    getline(cin, autor);
     cout << "Digite el nombre del trabajo: ";
-    cin >> nombreTrabajo;
+    fflush;
+    getline(cin, nombreTrabajo);
     cout << "Digite el nombre del director: ";
-    cin >> director;
+    fflush;
+    getline(cin, director);
     cout << "Digite el nombre codirector: ";
-    cin >> codirector;
+    fflush;
+    getline(cin, codirector);
     cout << "Digite el nombre del jurado1: ";
-    cin >> jurado1;
+    fflush;
+    getline(cin, jurado1);
     cout << "Digite el nombre del jurado2: ";
-    cin >> jurado2;
+    fflush;
+    getline(cin, jurado2);
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
     cin >> valorTipoTrabajo;
     tipoTrabajo = identificarTipoTrabajo(valorTipoTrabajo);
@@ -67,7 +74,7 @@ void BaseDeDatos::llenarActa(int codigo)
 
 void BaseDeDatos::exportarActa(int codigo) 
 {
-//    if (existeActa(codigo)) {
+    if (existeActaCalificada(codigo)) {
             for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
                 pActa != this->actasCalificadas.end(); pActa++) {
                 if (pActa->getCodigo() == codigo) {
@@ -75,10 +82,10 @@ void BaseDeDatos::exportarActa(int codigo)
                     pActa = actasCalificadas.end() - 1;
                 }
             }
-/*        }
+        }
         else {
             cout << "No se encontro el acta.\n";
-        }*/
+        }
 }
 
 void BaseDeDatos::modificarInfoCriterios() 
@@ -92,6 +99,7 @@ void BaseDeDatos::modificarInfoCriterios()
         << "0. Salir.\n"
         << "Opcion: ";
         cin >> opcion;
+        system("cls");
         switch(opcion){
         case 1:
             int i, cantCriterios;
@@ -144,7 +152,7 @@ void BaseDeDatos::verActa(int codigo) {
             pActa != this->actasCalificadas.end(); pActa++) {
             if (pActa->getCodigo() == codigo) {
                 pActa->mostrarActa();
-                pActa = actasCalificadas.end();
+                pActa = actasCalificadas.end() - 1;
             }
         }
     }
@@ -199,10 +207,11 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
     float pesoPorcentual;
     cout << "Por favor escriba el ID del criterio: ";
     cin >> id;
-    if (noExisteCriterio(id))
+    if (!existeCriterio(id))
     {
         cout << "Por favor escriba la descripcion del criterio: ";
-        cin >> descripcion;
+        fflush;
+        getline(cin, descripcion);
         cout << "Por favor escriba el peso porcentual del criterio en decimal: ";
         cin >> pesoPorcentual;
         return InfoCriterio(id, descripcion, pesoPorcentual);
@@ -254,6 +263,7 @@ void BaseDeDatos::importarDatos(){
         cout << "No se encontro el archivo .csv con los datos";
     }
 }
+
 void BaseDeDatos::exportarDatos(){
     int i;
     ofstream archivoTemp;
@@ -315,17 +325,6 @@ bool BaseDeDatos::existeCriterio(int id) {
     }
     return false;
 }
-
-bool BaseDeDatos::noExisteCriterio(int id) {
-    for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
-        pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
-        if (pInfoCriterio->getId() != id) {
-            return true;
-        }
-    }
-    return false;
-}
-
 
 vector<Acta> BaseDeDatos::getActasPendientes() {
     return actasPendientes;

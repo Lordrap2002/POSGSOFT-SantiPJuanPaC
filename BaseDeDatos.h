@@ -9,6 +9,7 @@
 #include "InfoCriterio.h"
 #include <fstream>
 #include <sstream>
+#include <windows.h>
 
 using namespace std;
 
@@ -37,8 +38,6 @@ public:
 	Trabajo identificarTipoTrabajo(int opcion);
 	Resultado identificarResultado(int opcion);
 	bool existeCriterio(int id);
-	bool noExisteCriterio(int id);
-
 
 	//sets/gets
 	vector<Acta> getActasPendientes();

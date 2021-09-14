@@ -61,12 +61,13 @@ void Acta::mostrarActa(){
 void Acta::llenarActa(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
-            //pCriterio->mostrarCriterio();
+            pCriterio->getInfoCriterio().mostrarInfoCriterio();
             pCriterio->llenarCriterio();
             
     }
     cout << "Por favor escriba los comentarios generales: ";
-    cin >> this->comentariosGenerales;
+    fflush;
+    getline(cin, this->comentariosGenerales);
     calcularNotaFinal();
     if(this->notaFinal < 3.0){
         this->resultadoFinal = reprobado;

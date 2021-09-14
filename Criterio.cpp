@@ -18,7 +18,7 @@ void Criterio::mostrarCriterio(){
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
         << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
         << "Nota jurado 1: " << getNotaJurado1() << endl
-        << "Coomentario jurado 1: " << getComentario1() << endl
+        << "Comentario jurado 1: " << getComentario1() << endl
         << "Nota jurado 2: " << getNotaJurado2() << endl
         << "Comentario jurado 2: " << getComentario2() << endl
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
@@ -26,18 +26,20 @@ void Criterio::mostrarCriterio(){
         << "Nota final del criterio: " << getNotaCriterio() << endl;
 }
 
-
 void Criterio::llenarCriterio(){
     cout << "Por favor escriba el comentario del jurado 1: ";
-    cin >> this->comentario1;
+    fflush;
+    getline(cin, this->comentario1);
     cout << "Por favor escriba la nota del jurado 1: ";
     cin >> this->notaJurado1;
     cout << "Por favor escriba el comentario del jurado 2: ";
-    cin >> this->comentario2;
+    fflush;
+    getline(cin, this->comentario2);
     cout << "Por favor escriba la nota del jurado 2: ";
     cin >> this->notaJurado2;
     cout << "Por favor escriba el comentario general del criterio: ";
-    cin >> this->comentarioGeneral;
+    fflush;
+    getline(cin, this->comentarioGeneral);
     calcularNotaPromedio();
     calcularNotaCriterio();
 }

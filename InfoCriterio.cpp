@@ -11,6 +11,12 @@ InfoCriterio::InfoCriterio(int id, string descripcion, float pesoPorcentual) {
     setPesoPorcentual(pesoPorcentual);
 }
 
+void InfoCriterio::mostrarInfoCriterio(){
+    cout << "Criterio #" << this->id << endl
+        << "Descripcion: " << this->descripcion << endl
+        << "Peso porcentual: " << this->pesoPorcentual << endl;
+}
+
 string InfoCriterio::getDescripcion(){
     return this->descripcion;
 }
