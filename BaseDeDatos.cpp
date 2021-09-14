@@ -23,25 +23,25 @@ void BaseDeDatos::crearActa()
     cout << "Digite el codigo: ";
     cin >> codigo;
     cout << "Digite fecha: ";
-    fflush;
+    fflush(stdin);
     getline(cin, fecha);
     cout << "Digite autor: ";
-    fflush;
+    fflush(stdin);
     getline(cin, autor);
     cout << "Digite el nombre del trabajo: ";
-    fflush;
+    fflush(stdin);
     getline(cin, nombreTrabajo);
     cout << "Digite el nombre del director: ";
-    fflush;
+    fflush(stdin);
     getline(cin, director);
     cout << "Digite el nombre codirector: ";
-    fflush;
+    fflush(stdin);
     getline(cin, codirector);
     cout << "Digite el nombre del jurado1: ";
-    fflush;
+    fflush(stdin);
     getline(cin, jurado1);
     cout << "Digite el nombre del jurado2: ";
-    fflush;
+    fflush(stdin);
     getline(cin, jurado2);
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
     cin >> valorTipoTrabajo;
@@ -49,7 +49,6 @@ void BaseDeDatos::crearActa()
     actasPendientes.push_back(Acta(codigo, fecha, autor, nombreTrabajo, 
                                     director, codirector, jurado1, 
                                     jurado2, crearCriterios(), tipoTrabajo));
-    this->consecutivoDeActas++;
 }
 
 void BaseDeDatos::llenarActa(int codigo) 
@@ -69,7 +68,7 @@ void BaseDeDatos::llenarActa(int codigo)
     }else{
         cout << "No se encontro el acta.\n";
     }
-    
+    this->consecutivoDeActas++;
 }
 
 void BaseDeDatos::exportarActa(int codigo) 
@@ -210,7 +209,7 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
     if (!existeCriterio(id))
     {
         cout << "Por favor escriba la descripcion del criterio: ";
-        fflush;
+        fflush(stdin);
         getline(cin, descripcion);
         cout << "Por favor escriba el peso porcentual del criterio en decimal: ";
         cin >> pesoPorcentual;
@@ -232,12 +231,14 @@ void BaseDeDatos::importarDatos(){
     Resultado resultadoFinal;
     archivoTemp.open("datos.csv");
     if(archivoTemp.is_open()){   
+        datos.clear();
         getline(archivoTemp, linea);
         stringstream s(linea);
-        this->consecutivoDeActas = stoi(linea);
-        getline(archivoTemp, linea);
-        stringstream s(linea);
-        this->cantCriterios = stoi(linea);
+        while(getline(s, word, ',')){
+                datos.push_back(word);
+        }
+        this->consecutivoDeActas = stoi(datos[0]);
+        this->cantCriterios = stoi(datos[1]);
         for(i = 0; i < consecutivoDeActas; i++){
             datos.clear();
             getline(archivoTemp, linea);
@@ -270,8 +271,7 @@ void BaseDeDatos::exportarDatos(){
     int i;
     ofstream archivoTemp;
     archivoTemp.open("datos.csv", ios::trunc);
-    archivoTemp << consecutivoDeActas << endl;
-    archivoTemp << cantCriterios << endl;
+    archivoTemp << consecutivoDeActas << "," << cantCriterios << endl;
     for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++){
         archivoTemp << pActa->getCodigo() << ","

@@ -37,9 +37,9 @@ class Acta{
         void exportarActa();
         void calcularNotaFinal();
         void mostrarTipoTrabajo();
-        void importarTipoTrabajo(int valor);
         void mostrarResultadoFinal();
-        void importarResultadoFinal(int valor);
+        void exportarTipoTrabajo(string nombreArchivo);
+        void exportarResultadoFinal(string nombreArchivo);
 
         //gets/sets
         int getCodigo();

@@ -68,7 +68,7 @@ void Acta::llenarActa(){
             
     }
     cout << "Por favor escriba los comentarios generales: ";
-    fflush;
+    fflush(stdin);
     getline(cin, this->comentariosGenerales);
     calcularNotaFinal();
     if(this->notaFinal < 3.0){
@@ -89,9 +89,9 @@ void Acta::exportarActa(){
         << "Director: " << getDirector() << endl
         << "Codirector: " << getCodirector() << endl
         << "Jurado 1: " << getJurado1() << endl
-        << "Jurado 2: " << getJurado2() << endl
-        << "Tipo de trabajo: " << getTipoTrabajo() << endl
-        << "Criterios:" << endl;
+        << "Jurado 2: " << getJurado2() << endl;
+        exportarTipoTrabajo(nombreArchivo);
+        cout << "Criterios:" << endl;
     archivoTemp.close();
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
@@ -99,8 +99,8 @@ void Acta::exportarActa(){
     }
     archivoTemp.open( nombreArchivo, ios::app);
     archivoTemp << "Comentarios generales: " << getComentariosGenerales() << endl
-    << "Nota final: " << getNotaFinal() << endl
-    << "Resultado final: " << getResultadoFinal() << endl;
+    << "Nota final: " << getNotaFinal() << endl;
+    exportarResultadoFinal(nombreArchivo);
     archivoTemp.close();
 }
 
@@ -119,12 +119,34 @@ void Acta::mostrarTipoTrabajo(){
     }
 }
 
+void Acta::exportarTipoTrabajo(string nombreArchivo){
+    ofstream archivoTemp;
+    archivoTemp.open(nombreArchivo);
+    if(this->tipoTrabajo == aplicado){
+        archivoTemp << "Aplicado" << endl;
+    }else{
+        archivoTemp << "Investigacion" << endl;
+    }
+    archivoTemp.close();
+}
+
 void Acta::mostrarResultadoFinal(){
     if(this->resultadoFinal == aprobado){
         cout << "Aprobado" << endl;
     }else{
         cout << "Reprobado" << endl;
     }
+}
+
+void Acta::exportarResultadoFinal(string nombreArchivo){
+    ofstream archivoTemp;
+    archivoTemp.open(nombreArchivo);
+    if(this->resultadoFinal == aprobado){
+        archivoTemp << "Aprobado" << endl;
+    }else{
+        archivoTemp << "Reprobado" << endl;
+    }
+    archivoTemp.close();
 }
 
 int Acta::getCodigo(){

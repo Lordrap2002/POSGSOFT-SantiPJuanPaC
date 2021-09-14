@@ -1,0 +1,53 @@
+Acta #2
+Fecha: e
+Autor: r
+Nombre del trabajo: acta2
+Director: r
+Codirector: t
+Jurado 1: g
+Jurado 2: f
+Tipo de trabajo: 1
+Criterios:
+Criterio #1
+Descripcion: aa
+Peso porcentual: 0.3
+Nota jurado 14
+Coomentario jurado 1f
+Nota jurado 25
+Comentario jurado 2g
+Comentario general del criterio: ff
+Nota promedio del criterio: 4.5
+Nota final del criterio: 1.35
+Criterio #2
+Descripcion: bb
+Peso porcentual: 0.2
+Nota jurado 12
+Coomentario jurado 1e
+Nota jurado 24
+Comentario jurado 2r
+Comentario general del criterio: r
+Nota promedio del criterio: 3
+Nota final del criterio: 0.6
+Criterio #3
+Descripcion: cc
+Peso porcentual: 0.4
+Nota jurado 15
+Coomentario jurado 1r
+Nota jurado 22
+Comentario jurado 2e
+Comentario general del criterio: c
+Nota promedio del criterio: 3.5
+Nota final del criterio: 1.4
+Criterio #4
+Descripcion: dd
+Peso porcentual: 0.1
+Nota jurado 11
+Coomentario jurado 1s
+Nota jurado 24
+Comentario jurado 2s
+Comentario general del criterio: b
+Nota promedio del criterio: 2.5
+Nota final del criterio: 0.25
+Comentarios generales: dfg
+Nota final: 3.6
+Resultado final: 0

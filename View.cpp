@@ -52,8 +52,8 @@ void View::mostrarMenuDirectora()
         cout << "Menu director/a\n";
         cout << "1. Modificar criterios \n";
         cout << "2. ver historial de actas \n";
-        std::cout << "Digite la opcion: ";
-        std::cin >> opcion;
+        cout << "Digite la opcion: ";
+        cin >> opcion;
         system("cls");
 
         switch (opcion)
