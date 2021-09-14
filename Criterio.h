@@ -17,8 +17,8 @@ class Criterio{
         Criterio();
         void calcularNotaCriterio();
         void calcularNotaPromedio();
-        void mostrarCriterio();
-        void llenarCriterio();
+        void llenarCriterio();       
+        //void mostrarCriterio();
         void exportarCriterio(string nombreArchivo);
 
         //gets/sets

@@ -13,7 +13,7 @@ void Criterio::calcularNotaPromedio(){
     setNotaPromedio((this->notaJurado1 + this->notaJurado2) / 2);
 }
 
-void Criterio::mostrarCriterio(){
+/*void Criterio::mostrarCriterio(){
     cout << "Criterio #" << infoCriterio.getId() << endl
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
         << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl
@@ -24,7 +24,7 @@ void Criterio::mostrarCriterio(){
         << "Comentario general del criterio: " << getComentarioGeneral() << endl
         << "Nota promedio del criterio: " << getNotaPromedio() << endl
         << "Nota final del criterio: " << getNotaCriterio() << endl;
-}
+}*/
 
 void Criterio::llenarCriterio(){
     cout << "Por favor escriba el comentario del jurado 1: ";
@@ -46,7 +46,7 @@ void Criterio::llenarCriterio(){
 
 void Criterio::exportarCriterio(string nombreArchivo){
     ofstream archivoTemp;
-    archivoTemp.open( nombreArchivo, ios::app);
+    archivoTemp.open(nombreArchivo, ios::app);
     archivoTemp << "Criterio #" << infoCriterio.getId() << endl
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
         << "Peso porcentual: " << infoCriterio.getPesoPorcentual() << endl

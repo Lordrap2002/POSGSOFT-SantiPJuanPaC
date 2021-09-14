@@ -49,11 +49,6 @@ void Acta::mostrarActa(){
         << "Jurado 2: " << getJurado2() << endl
         << "Tipo de trabajo: ";
         mostrarTipoTrabajo();
-        cout << "Criterios:" << endl;
-        for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
-            pCriterio != this->criterios.end(); pCriterio++){
-            pCriterio->mostrarCriterio();
-        }
         cout << "Comentarios generales: " << getComentariosGenerales() << endl
         << "Nota final: " << getNotaFinal() << endl
         << "Resultado final: ";
@@ -71,7 +66,7 @@ void Acta::llenarActa(){
     fflush(stdin);
     getline(cin, this->comentariosGenerales);
     calcularNotaFinal();
-    if(this->notaFinal < 3.0){
+    if(this->notaFinal < 3.5){
         this->resultadoFinal = reprobado;
     }else{
         this->resultadoFinal = aprobado;
