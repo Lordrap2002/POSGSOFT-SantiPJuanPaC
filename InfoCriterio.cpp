@@ -1,16 +1,21 @@
 #include <iostream>
 #include "InfoCriterio.h"
 
+//Constructor vacío.
 InfoCriterio::InfoCriterio(){
 
 }
 
+//Constructor con parámetros.
 InfoCriterio::InfoCriterio(int id, string descripcion, float pesoPorcentual) {
     setId(id);
     setDescripcion(descripcion);
     setPesoPorcentual(pesoPorcentual);
 }
 
+/// <summary>
+/// Método que es invocado desde BaseDeDatos para poder imprimir en pantalla la información de cada criterio.
+/// </summary>
 void InfoCriterio::mostrarInfoCriterio(){
     cout << "Criterio #" << this->id << endl
         << "Descripcion: " << this->descripcion << endl
