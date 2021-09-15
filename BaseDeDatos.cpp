@@ -2,14 +2,14 @@
 #include "BaseDeDatos.h"
 #include "Acta.h"
 
-//Constructor vacío.
+//Constructor vacï¿½o.
 BaseDeDatos::BaseDeDatos() 
 {
 
 }
 
 /// <summary>
-/// Método que nos permite crear un acta y llenar la información básica de esta, como la fecha y el autor.
+/// Mï¿½todo que nos permite crear un acta y llenar la informaciï¿½n bï¿½sica de esta, como la fecha y el autor.
 /// </summary>
 void BaseDeDatos::crearActa() 
 {
@@ -42,9 +42,9 @@ void BaseDeDatos::crearActa()
     getline(cin, jurado2);
     cout << "Digite el tipo de trabajo(1. Aplicado, 2. Investigacion): ";
     cin >> valorTipoTrabajo;
-    tipoTrabajo = identificarTipoTrabajo(valorTipoTrabajo);
-    //Se envía a actasPendientes la información del acta recién creada, para que
-    //cuando se esté invocando el acta ya tenga dicha información.
+    tipoTrabajo = valorTipoTrabajo == aplicado ? aplicado : investigacion;
+    //Se envï¿½a a actasPendientes la informaciï¿½n del acta reciï¿½n creada, para que
+    //cuando se estï¿½ invocando el acta ya tenga dicha informaciï¿½n.
     actasPendientes.push_back(Acta(codigo, fecha, autor, nombreTrabajo, 
                                     director, codirector, jurado1, 
                                     jurado2, crearCriterios(), tipoTrabajo));
@@ -52,16 +52,16 @@ void BaseDeDatos::crearActa()
 
 
 /// <summary>
-/// Método que primero llama a existeActa() para validar que existe el acta, y en caso True se llama al método llenarActa()
-/// de la clase Acta para llenar la información de ese acta y evaluarla.
+/// Mï¿½todo que primero llama a existeActa() para validar que existe el acta, y en caso True se llama al mï¿½todo llenarActa()
+/// de la clase Acta para llenar la informaciï¿½n de ese acta y evaluarla.
 /// </summary>
-/// <param name="codigo">Código del acta que se desea llenar</param>
+/// <param name="codigo">Cï¿½digo del acta que se desea llenar</param>
 void BaseDeDatos::llenarActa(int codigo) 
 {
     //Se crea una variale temporal para guardar la informacion que se pasara a cada acta
     Acta actaTemp;
     if(existeActaPendiente(codigo)){
-        //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+        //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
         for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
         pActa != this->actasPendientes.end(); pActa++){
             if(pActa->getCodigo() == codigo){
@@ -79,14 +79,14 @@ void BaseDeDatos::llenarActa(int codigo)
 }
 
 /// <summary>
-/// Método que primero invoca a existeActaCalificada(), y en caso True recorre el vector de actas calificadas,
-/// y manda a exportar la información del acta deseada llamando al método exportarActa() desde la clase Acta. 
+/// Mï¿½todo que primero invoca a existeActaCalificada(), y en caso True recorre el vector de actas calificadas,
+/// y manda a exportar la informaciï¿½n del acta deseada llamando al mï¿½todo exportarActa() desde la clase Acta. 
 /// </summary>
-/// <param name="codigo">Código del acta que se desea exportar</param>
+/// <param name="codigo">Cï¿½digo del acta que se desea exportar</param>
 void BaseDeDatos::exportarActa(int codigo) 
 {
     if (existeActaCalificada(codigo)) {
-        //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+        //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
             for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
                 pActa != this->actasCalificadas.end(); pActa++) {
                 if (pActa->getCodigo() == codigo) {
@@ -101,7 +101,7 @@ void BaseDeDatos::exportarActa(int codigo)
 }
 
 /// <summary>
-/// Método que permite acceder al vector de infoCriterios y modificar la información de cada criterio,
+/// Mï¿½todo que permite acceder al vector de infoCriterios y modificar la informaciï¿½n de cada criterio,
 /// de todos los criterios, agregar un nuevo criterio o eliminar un criterio.
 /// </summary>
 void BaseDeDatos::modificarInfoCriterios() 
@@ -116,11 +116,11 @@ void BaseDeDatos::modificarInfoCriterios()
         << "0. Salir.\n"
         << "Opcion: ";
         cin >> opcion;
-        //system es un comando de la librería windows.h que permite ir limpiando la pantalla de donde se está imprimiendo
+        //system es un comando de la librerï¿½a windows.h que permite ir limpiando la pantalla de donde se estï¿½ imprimiendo
         system("cls");
         switch (opcion) {
         case 1:
-            //Se llama al método crearInfocriterio() para crear un nuevo criterio con sus respectivos datos.
+            //Se llama al mï¿½todo crearInfocriterio() para crear un nuevo criterio con sus respectivos datos.
             infoCriterios.push_back(crearInfoCriterio());
             this->cantCriterios++;
             break;
@@ -129,8 +129,8 @@ void BaseDeDatos::modificarInfoCriterios()
             int i, cantCriterios;
             cout << "Porfavor escriba la cantidad de criterios que van a existir: ";
             cin >> cantCriterios;
-            //Por cada criterio que se haya mandado a crear, se llamará al método crearInfoCriterio() para
-            // crear la información respectiva al criterio recién creado.
+            //Por cada criterio que se haya mandado a crear, se llamarï¿½ al mï¿½todo crearInfoCriterio() para
+            // crear la informaciï¿½n respectiva al criterio reciï¿½n creado.
             for (i = 0; i < cantCriterios; i++) {
                 infoCriterios.push_back(crearInfoCriterio());
             }
@@ -140,11 +140,11 @@ void BaseDeDatos::modificarInfoCriterios()
             
             cout << "Porfavor escriba el ID del criterio que va a modificar: ";
             cin >> id;
-            //Se llama al método existeCriterio() para verificar la existencia del criterio, y en caso True
-            //llama al método crearInfoCriterio() para volver a llenar toda la información del criterio seleccionado.
+            //Se llama al mï¿½todo existeCriterio() para verificar la existencia del criterio, y en caso True
+            //llama al mï¿½todo crearInfoCriterio() para volver a llenar toda la informaciï¿½n del criterio seleccionado.
             if (existeCriterio(id))
             {
-                //pInfoCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
+                //pInfoCriterio apunta al vector InfoCriterio para poder invocar mï¿½todos y datos de esa misma clase.
                 for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
                     pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
                     if (pInfoCriterio->getId() == id) {
@@ -161,12 +161,12 @@ void BaseDeDatos::modificarInfoCriterios()
         case 4:
             cout << "Porfavor escriba el ID del criterio que va a eliminar: ";
             cin >> id;
-            //Se llama al método existeCriterio() para verificar la existencia del criterio, y en caso True
+            //Se llama al mï¿½todo existeCriterio() para verificar la existencia del criterio, y en caso True
             //utiliza el comando .erase() para eliminar el criterio seleccionado.
             if (existeCriterio(id))
             {
                 
-                //pInfoCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
+                //pInfoCriterio apunta al vector InfoCriterio para poder invocar mï¿½todos y datos de esa misma clase.
                 for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
                     pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
                     if (pInfoCriterio->getId() == id) {
@@ -188,12 +188,12 @@ void BaseDeDatos::modificarInfoCriterios()
 }
 
 /// <summary>
-/// Método que se encarga de recorrer el vector de actas desde el inicio hasta el final
-///  y va imprimiendo en pantalla cada acta invocando el método mostrarActa()
+/// Mï¿½todo que se encarga de recorrer el vector de actas desde el inicio hasta el final
+///  y va imprimiendo en pantalla cada acta invocando el mï¿½todo mostrarActa()
 /// </summary>
 void BaseDeDatos::verHistorial() 
 {
-    //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+    //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
     for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++) {
             pActa->mostrarActa();
@@ -201,12 +201,12 @@ void BaseDeDatos::verHistorial()
 }
 
 /// <summary>
-/// Método que permite invoca el método mostrarActa() para ver los datos de un acta específica dentro del vector de actas calificadas.
+/// Mï¿½todo que permite invoca el mï¿½todo mostrarActa() para ver los datos de un acta especï¿½fica dentro del vector de actas calificadas.
 /// </summary>
-/// <param name="codigo">Código del acta que se desea visualizar</param>
+/// <param name="codigo">Cï¿½digo del acta que se desea visualizar</param>
 void BaseDeDatos::verActa(int codigo) {
     if (existeActaCalificada(codigo)) {
-        //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+        //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
         for (vector<Acta>::iterator pActa = this->actasCalificadas.begin();
             pActa != this->actasCalificadas.end(); pActa++) {
             if (pActa->getCodigo() == codigo) {
@@ -221,12 +221,12 @@ void BaseDeDatos::verActa(int codigo) {
 }
 
 /// <summary>
-/// Método que recorre el vector de actas pendientes y verifica si existe el acta deseada.
+/// Mï¿½todo que recorre el vector de actas pendientes y verifica si existe el acta deseada.
 /// </summary>
-/// <param name="codigo">Código del acta que se desea visualizar</param>
+/// <param name="codigo">Cï¿½digo del acta que se desea visualizar</param>
 /// <returns>True en case de que exista, y false en caso contrario</returns>
 bool BaseDeDatos::existeActaPendiente(int codigo) {
-    //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+    //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
     for(vector<Acta>::iterator pActa = this->actasPendientes.begin();
         pActa != this->actasPendientes.end(); pActa++){
         if(pActa->getCodigo() == codigo){
@@ -238,12 +238,12 @@ bool BaseDeDatos::existeActaPendiente(int codigo) {
 }
 
 /// <summary>
-/// Método que recorre el vector de actas calificadas y verifica si existe el acta deseada.
+/// Mï¿½todo que recorre el vector de actas calificadas y verifica si existe el acta deseada.
 /// </summary>
-/// <param name="codigo">Código del acta que se desea visualizar</param>
+/// <param name="codigo">Cï¿½digo del acta que se desea visualizar</param>
 /// <returns>True en case de que exista, y false en caso contrario</returns>
 bool BaseDeDatos::existeActaCalificada(int codigo) {
-    //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+    //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
     for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++){
         if(pActa->getCodigo() == codigo){
@@ -255,16 +255,11 @@ bool BaseDeDatos::existeActaCalificada(int codigo) {
 }
 
 /// <summary>
-/// Método que crea un criterio con su respectiva información (infoCriterio()) dentro del vector criterio para que más adelante se pueda utilizar.
+/// Mï¿½todo que crea un criterio con su respectiva informaciï¿½n (infoCriterio()) dentro del vector criterio para que mï¿½s adelante se pueda utilizar.
 /// </summary>
-/// <returns> Retorna el vector de criterios con el nuevo criterio añadido</returns>
+/// <returns> Retorna el vector de criterios con el nuevo criterio aï¿½adido</returns>
 vector<Criterio> BaseDeDatos::crearCriterios()
 {
-    /*
-    * 1. Para cada uno de los INFOCRITERIOS definidos en base de datos creamos un Criterio
-    * 2. Adicionamos cada criterio en el vector de criterios
-    */
-
     //Recorriendo el VECTOR de Infocriterios de la base de datos vamos a ir creando los criterios en el acta.
     Criterio criterioTemp;
     vector<Criterio> criterios;
@@ -277,9 +272,9 @@ vector<Criterio> BaseDeDatos::crearCriterios()
 }
 
 /// <summary>
-/// Método que primero llama a existeCriterio(), y en caso True le agrega la respectiva información a dicho criterio en el vector infoCriterios.
+/// Mï¿½todo que primero llama a existeCriterio(), y en caso True le agrega la respectiva informaciï¿½n a dicho criterio en el vector infoCriterios.
 /// </summary>
-/// <returns>Retorna la información que se le acaba de agregar a dicho criterio</returns>
+/// <returns>Retorna la informaciï¿½n que se le acaba de agregar a dicho criterio</returns>
 InfoCriterio BaseDeDatos::crearInfoCriterio(){
     int id;
     string descripcion;
@@ -303,7 +298,7 @@ InfoCriterio BaseDeDatos::crearInfoCriterio(){
 }
 
 /// <summary>
-/// Método que permite la importación los datos de las actas que ya han sido creadas y exportadas anteriormente al archivo "datos.csv"
+/// Mï¿½todo que permite la importaciï¿½n de los datos de las actas que ya han sido creadas y exportadas anteriormente al archivo "datos.csv"
 /// </summary>
 void BaseDeDatos::importarDatos(){
     int i, j, codigo;
@@ -314,8 +309,9 @@ void BaseDeDatos::importarDatos(){
     Trabajo tipoTrabajo;
     Resultado resultadoFinal;
     archivoTemp.open("datos.csv");
-    if(archivoTemp.is_open()){   
+    if(archivoTemp.is_open()){
         datos.clear();
+        //se lee una linea del archivo .csv, luego es dividida por comas para guardar cada valor en el vector datos
         getline(archivoTemp, linea);
         stringstream s(linea);
         while(getline(s, palabra, ',')){
@@ -325,6 +321,7 @@ void BaseDeDatos::importarDatos(){
         this->consecutivoDeActas = stoi(datos[0]);
         this->cantCriterios = stoi(datos[1]);
         for(i = 0; i < consecutivoDeActas; i++){
+            //se vacia el vector datos para que tenga la informacion de solo una linea
             datos.clear();
             getline(archivoTemp, linea);
             //La clase stringstream nos permite operar cualquier variable de tipo string como si fuera stream
@@ -333,15 +330,16 @@ void BaseDeDatos::importarDatos(){
             while(getline(s, palabra, ',')){
                 datos.push_back(palabra);
             }
-            //Para cada parámetro de Acta, se extrae el valor del archivo y se incorpora a un vector
+            //Para cada parï¿½metro de Acta, se extrae el valor del archivo y se incorpora a un vector
             //para poder incorporarlos a las respectivas variables.
-            tipoTrabajo = identificarTipoTrabajo(stoi(datos[9]));
-            resultadoFinal = identificarResultado(stoi(datos[10]));
+            // se utilizÃ³ un operador ternario para decidir que se va a imprimir dependiendo del tipo de trabajo.
+            // datos[valor] corresponde a los diferentes atributos de la clase Acta, para saber que atributo es cada
+            // objeto del vector ver Acta.cpp linea 27.
             actasCalificadas.push_back(Acta(stoi(datos[0]), datos[1], datos[2], datos[3], datos[4], 
-                                        datos[5], datos[6], datos[7], datos[8], tipoTrabajo,
-                                        resultadoFinal, stof(datos[11])));
+                                        datos[5], datos[6], datos[7], datos[8], (stoi(datos[9]) == aplicado ? aplicado : investigacion),
+                                        (stoi(datos[10]) == aprobado ? aprobado : reprobado), stof(datos[11])));
         }
-        //Se toman los datos de la información de cada uno de los criterios y se incorporan a su respectivo vector
+        //Se toman los datos de la informaciï¿½n de cada uno de los criterios y se incorporan a su respectivo vector
         //para poder incorporarlos en sus respectivas variables.
         for(i = 0; i < cantCriterios; i++){
             datos.clear();
@@ -353,13 +351,13 @@ void BaseDeDatos::importarDatos(){
             infoCriterios.push_back(InfoCriterio(stoi(datos[0]), datos[1], stof(datos[2])));
         }
         archivoTemp.close();
-    }/*else {
+    }else{
         cout << "No se encontro el archivo .csv con los datos\n";
-    }*/
+    }
 }
 
 /// <summary>
-/// Método que permite exportar los datos de las actas calificadas y de los criterios a cualquier archivo, en este caso en un archivo .csv.
+/// Mï¿½todo que permite exportar los datos de las actas calificadas y de los criterios a cualquier archivo, en este caso en un archivo .csv.
 /// </summary>
 void BaseDeDatos::exportarDatos(){
     int i;
@@ -369,7 +367,7 @@ void BaseDeDatos::exportarDatos(){
     //Trunc se utiliza para que cada vez que se abra el archivo, los datos viejos se eliminen.
     archivoTemp.open("datos.csv", ios::trunc);
     archivoTemp << consecutivoDeActas << "," << cantCriterios << endl;
-    //pActa apunta al vector Acta para poder invocar métodos y datos de esa misma clase.
+    //pActa apunta al vector Acta para poder invocar mï¿½todos y datos de esa misma clase.
     for(vector<Acta>::iterator pActa = this->actasCalificadas.begin();
         pActa != this->actasCalificadas.end(); pActa++){
         archivoTemp << pActa->getCodigo() << ","
@@ -386,7 +384,7 @@ void BaseDeDatos::exportarDatos(){
                     << pActa->getNotaFinal() << ","
                     << endl;
     }
-    //pInfoCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
+    //pInfoCriterio apunta al vector InfoCriterio para poder invocar mï¿½todos y datos de esa misma clase.
     for(vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
         pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++){
         archivoTemp << pInfoCriterio->getId() << ","
@@ -397,12 +395,13 @@ void BaseDeDatos::exportarDatos(){
     archivoTemp.close();
 }
 
+/// Se dejo comentariado este metodo por si en algun momento vemos que se puede utilizar.
 /// <summary>
-/// Método que identifica el tipo de trabajo que es el acta del enum Trabajo.
+/// Mï¿½todo que identifica el tipo de trabajo que es el acta del enum Trabajo.
 /// </summary>
-/// <param name="opcion">Recibe la opción del enum de tipo de trabajo (aplicativo o investigación)</param>
+/// <param name="opcion">Recibe la opciï¿½n del enum de tipo de trabajo (aplicativo o investigaciï¿½n)</param>
 /// <returns>Retorna el tipo de trabajo de un acta</returns>
-Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
+/*Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
     Trabajo tipoTrabajo;
     if(opcion == aplicado){
         tipoTrabajo = aplicado;
@@ -410,14 +409,15 @@ Trabajo BaseDeDatos::identificarTipoTrabajo(int opcion){
         tipoTrabajo = investigacion;
     }
     return tipoTrabajo;
-}
+}*/
 
+/// Se dejo comentariado este metodo por si en algun momento vemos que se puede utilizar.
 /// <summary>
-/// Método que identifica el estado de calificación de cada acta del enum Resultado.
+/// Mï¿½todo que identifica el estado de calificaciï¿½n de cada acta del enum Resultado.
 /// </summary>
-/// <param name="opcion">Recibe la opción del enum del estado de calificación (aprobado o reprobado)</param>
-/// <returns>Retorna el estado de calificación de un acta</returns>
-Resultado BaseDeDatos::identificarResultado(int opcion){
+/// <param name="opcion">Recibe la opciï¿½n del enum del estado de calificaciï¿½n (aprobado o reprobado)</param>
+/// <returns>Retorna el estado de calificaciï¿½n de un acta</returns>
+/*Resultado BaseDeDatos::identificarResultado(int opcion){
     Resultado resultadoFinal;
     if(opcion == aprobado){
         resultadoFinal = aprobado;
@@ -425,15 +425,15 @@ Resultado BaseDeDatos::identificarResultado(int opcion){
         resultadoFinal = reprobado;
     }
     return resultadoFinal;
-}
+}*/
 
 /// <summary>
-/// Método que verifica que un criterio exista antes de crearlo o modificarlo.
+/// Mï¿½todo que verifica que un criterio exista antes de crearlo o modificarlo.
 /// </summary>
 /// <param name="id">Recibe el id del criterio del que se quiera validar si existe o no existe</param>
 /// <returns>True en caso de que exista, False en caso de que no exista</returns>
 bool BaseDeDatos::existeCriterio(int id) {
-    //pInfoCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
+    //pInfoCriterio apunta al vector InfoCriterio para poder invocar mï¿½todos y datos de esa misma clase.
     for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
         pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
         if (pInfoCriterio->getId() == id) {
@@ -442,6 +442,23 @@ bool BaseDeDatos::existeCriterio(int id) {
     }
     return false;
 }
+
+int BaseDeDatos::getConsecutivoDeActas(){
+    return this->consecutivoDeActas;
+}
+
+void BaseDeDatos::setConsecutivoDeActas(int consecutivoDeActas){
+    this->consecutivoDeActas = consecutivoDeActas;
+}
+
+int BaseDeDatos::getCantCriterios(){
+    return this->cantCriterios;
+}
+
+void BaseDeDatos::setCantCriterios(int cantCriterios){
+    this-> cantCriterios = cantCriterios;
+}
+
 
 vector<Acta> BaseDeDatos::getActasPendientes() {
     return actasPendientes;

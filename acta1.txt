@@ -6,45 +6,8 @@ Director: f
 Codirector: d
 Jurado 1: c
 Jurado 2: v
-Criterio #1
-Descripcion: aa
-Peso porcentual: 0.3
-Nota jurado 1: 3
-Comentario jurado 1: s
-Nota jurado 2: 4
-Comentario jurado 2: f
-Comentario general del criterio: f
-Nota promedio del criterio: 3.5
-Nota final del criterio: 1.05
-Criterio #2
-Descripcion: bb
-Peso porcentual: 0.2
-Nota jurado 1: 4
-Comentario jurado 1: d
-Nota jurado 2: 3
-Comentario jurado 2: d
-Comentario general del criterio: s
-Nota promedio del criterio: 3.5
-Nota final del criterio: 0.7
-Criterio #3
-Descripcion: cc
-Peso porcentual: 0.4
-Nota jurado 1: 2
-Comentario jurado 1: d
-Nota jurado 2: 4
-Comentario jurado 2: d
-Comentario general del criterio: d
-Nota promedio del criterio: 3
-Nota final del criterio: 1.2
-Criterio #4
-Descripcion: dd
-Peso porcentual: 0.1
-Nota jurado 1: 3
-Comentario jurado 1: d
-Nota jurado 2: 4
-Comentario jurado 2: d
-Comentario general del criterio: d
-Nota promedio del criterio: 3.5
-Nota final del criterio: 0.35
+Tipo de trabajo: Investigacion
+Criterios:
 Comentarios generales: sdf
 Nota final: 3.3
+Resultado final: Aprobado
