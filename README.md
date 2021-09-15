@@ -21,12 +21,12 @@ Características:
 Constructor:
 ------------
 
-`Make`
+`make`
 
 Instalación:
 ------------
 
-Construir y `./Salida.exe`
+Construir y `.\Salida.exe`
 
 Diagrama de clases:
 -------------------
