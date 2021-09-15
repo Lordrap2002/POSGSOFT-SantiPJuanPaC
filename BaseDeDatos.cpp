@@ -102,11 +102,11 @@ void BaseDeDatos::exportarActa(int codigo)
 
 /// <summary>
 /// Método que permite acceder al vector de infoCriterios y modificar la información de cada criterio,
-/// de todos los criterios, o agregar un nuevo criterio.
+/// de todos los criterios, agregar un nuevo criterio o eliminar un criterio.
 /// </summary>
 void BaseDeDatos::modificarInfoCriterios() 
 {
-    int opcion;
+    int opcion, id;
     do{
         cout << "Que desea hacer?:\n"
         << "1. Agregar un nuevo criterio.\n"
@@ -137,7 +137,7 @@ void BaseDeDatos::modificarInfoCriterios()
             this->cantCriterios = cantCriterios;
             break;
         case 3:
-            int id;
+            
             cout << "Porfavor escriba el ID del criterio que va a modificar: ";
             cin >> id;
             //Se llama al método existeCriterio() para verificar la existencia del criterio, y en caso True
@@ -159,19 +159,20 @@ void BaseDeDatos::modificarInfoCriterios()
             }
 
         case 4:
-            int id;
             cout << "Porfavor escriba el ID del criterio que va a eliminar: ";
             cin >> id;
             //Se llama al método existeCriterio() para verificar la existencia del criterio, y en caso True
             //utiliza el comando .erase() para eliminar el criterio seleccionado.
             if (existeCriterio(id))
             {
+                
                 //pInfoCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
                 for (vector<InfoCriterio>::iterator pInfoCriterio = this->infoCriterios.begin();
                     pInfoCriterio != this->infoCriterios.end(); pInfoCriterio++) {
                     if (pInfoCriterio->getId() == id) {
                         infoCriterios.erase(pInfoCriterio);
-                        pInfoCriterio = this->infoCriterios.end();
+                        this->cantCriterios--;
+                        break;
                     }
                 }
                 
