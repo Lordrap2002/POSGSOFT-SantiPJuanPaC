@@ -1,5 +1,4 @@
 # **_POSGSOFT-SantiPJuanPaC_**
-===========================
 
 Resumen:
 --------
