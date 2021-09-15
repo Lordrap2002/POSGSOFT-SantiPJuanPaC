@@ -27,7 +27,3 @@ Instalación:
 ------------
 
 Construir y `.\Salida.exe`
-
-Diagrama de clases:
--------------------
-
