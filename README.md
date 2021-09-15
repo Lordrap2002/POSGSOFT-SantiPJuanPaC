@@ -9,15 +9,20 @@ Características:
 ----------------
 
 -Capacidad de importar y exportar los datos de los trabajos de grado calificados y de los criterios de evaluación de la maestría.
+
 -Capacidad de modificar y agregar criterios de evaluación de la maestría.
+
 -Capacidad de crear, evaluar, almacenar y exportar las actas de evaluación de los trabajos de grado.
+
 -Capacidad de mostrar un informe de las actas de evaluación calificadas.
+
 -Capacidad de calcular el resultado final de los trabajos de grado calificados.
 
 Constructor:
 ------------
 
 `Make`
+
 Instalación:
 ------------
 
