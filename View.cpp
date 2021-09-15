@@ -103,7 +103,7 @@ void View::mostrarMenuAsistente()
 
 void View::mostrarMenu()
 {
-    //Cargamos los datos guardados en el archivo "datos.csv" utilizando el método importarDatos().
+    //Cargamos los datos guardados en el archivo "datos.csv" utilizando el mï¿½todo importarDatos().
     sistema.importarDatos();
     system("cls");
     int opcion = -1;
@@ -118,8 +118,8 @@ void View::mostrarMenu()
         //cout << "4. Exportar datos \n";
         //cout << "5. Importar datos \n";
         cout << "0. Salir \n";
-        std::cout << "Digite la opcion: ";
-        std::cin >> opcion;
+        cout << "Digite la opcion: ";
+        cin >> opcion;
         system("cls");
 
         switch (opcion)
@@ -135,15 +135,9 @@ void View::mostrarMenu()
         case 3:
             View::mostrarMenuAsistente();
             break;
-        case 4:
-            sistema.exportarDatos();
-            break;
-        case 5:
-            sistema.importarDatos();
-            break;
         }
 
     } while (opcion != 0);
-    //Guardamos los datos que están en memoria en el archivo "datos.csv" utilizando el método exportarDatos().
+    //Guardamos los datos que estï¿½n en memoria en el archivo "datos.csv" utilizando el mï¿½todo exportarDatos().
     sistema.exportarDatos();
 }

@@ -1,27 +1,30 @@
 #include <iostream>
 #include "Criterio.h"
 
-//Constructor vacío.
+//Constructor vacï¿½o.
 Criterio::Criterio(){
 
 }
 
 /// <summary>
-/// Método que calcula la nota para cada criterio según la nota dada por el jurado y el peso porcentual de cada criterio.
+/// Mï¿½todo que calcula la nota para cada criterio segï¿½n la nota dada por el jurado y el peso porcentual de cada criterio.
 /// </summary>
 void Criterio::calcularNotaCriterio(){
     setNotaCriterio(this->notaPromedio * getInfoCriterio().getPesoPorcentual());
 }
 
 /// <summary>
-/// Calcula el promedio de la nota de cada criterio según la calificación dada por los dos jurados.
+/// Calcula el promedio de la nota de cada criterio segï¿½n la calificaciï¿½n dada por los dos jurados.
 /// </summary>
 void Criterio::calcularNotaPromedio(){
     setNotaPromedio((this->notaJurado1 + this->notaJurado2) / 2);
 }
 
 
-//Se dejo comentariado este metodo por si en algun momento vemos que se puede utilizar.
+/// Se dejo comentariado este metodo por si en algun momento vemos que se puede utilizar.
+/// <summary>
+/// Muestra los datos del criterio en consola.
+/// </summary>
 /*void Criterio::mostrarCriterio(){
     cout << "Criterio #" << infoCriterio.getId() << endl
         << "Descripcion: " << infoCriterio.getDescripcion() << endl
@@ -36,7 +39,7 @@ void Criterio::calcularNotaPromedio(){
 }*/
 
 /// <summary>
-/// Método que pide que se ingresen los comentarios y las notas de cada jurado para un criterio.
+/// Mï¿½todo que pide que se ingresen los comentarios y las notas de cada jurado para un criterio.
 /// </summary>
 void Criterio::llenarCriterio(){
     cout << "Por favor escriba el comentario del jurado 1: ";
@@ -58,10 +61,11 @@ void Criterio::llenarCriterio(){
 
 
 /// <summary>
-/// Método que exporta a un archivo cada uno de los criterios y su respectiva información para ser importados más tarde y poderse usar.
+/// Mï¿½todo que exporta a un archivo cada uno de los criterios y su respectiva informaciï¿½n para ser
+/// importados mï¿½s tarde y poderse usar.
 /// </summary>
-/// <param name="nombreArchivo">Recibe el nombre del archivoel cual está guardado en la variable nombreArchivo,
-///  al cual se van a importar los criterios</param>
+/// <param name="nombreArchivo">Recibe el nombre del archivo el cual estï¿½ guardado en la variable
+/// nombreArchivo, al cual se van a importar los criterios</param>
 void Criterio::exportarCriterio(string nombreArchivo){
     //Se utiliza la libreria ofstream para poder escribir en archivos aparte como un .txt
     //y se utiliza una variable temporal para pasar los datos desde el codigo al archivo

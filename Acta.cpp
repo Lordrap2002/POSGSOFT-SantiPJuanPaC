@@ -1,12 +1,12 @@
 #include <iostream>
 #include "Acta.h"
 
-//Constructor vacío.
+//Constructor vacï¿½o.
 Acta::Acta(){
 
 }
 
-//Constructor con parámetros.
+//Constructor con parï¿½metros utilizado al crear una acta nueva.
 Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
             string codirector, string jurado1, string jurado2, vector<Criterio> criterios,
             Trabajo tipoTrabajo){
@@ -23,6 +23,7 @@ Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string 
     setNotaFinal(0);
 }
 
+//Constructor con parï¿½metros utilizado al crear una acta a partir de un archivo .csv.
 Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string director,
             string codirector, string jurado1, string jurado2, string comentariosGenerales, 
             Trabajo tipoTrabajo, Resultado resultadoFinal, float notaFinal){
@@ -40,8 +41,8 @@ Acta::Acta(int codigo, string fecha, string autor, string nombreTrabajo, string 
     setNotaFinal(notaFinal);
 }
 
-//Método que es invocado desde BaseDeDatos para imprimir en pantalla los datos
-//de cada acta, como el código, la fecha o el autor.
+//Mï¿½todo que es invocado desde BaseDeDatos para imprimir en pantalla los datos
+//de cada acta, como el cï¿½digo, la fecha o el autor.
 void Acta::mostrarActa(){
     cout << "Acta #" << getCodigo() << endl
         << "Fecha: " << getFecha() << endl
@@ -51,17 +52,18 @@ void Acta::mostrarActa(){
         << "Codirector: " << getCodirector() << endl
         << "Jurado 1: " << getJurado1() << endl
         << "Jurado 2: " << getJurado2() << endl
-        << "Tipo de trabajo: ";
-        mostrarTipoTrabajo();
-        cout << "Comentarios generales: " << getComentariosGenerales() << endl
+        // se utilizÃ³ un operador ternario para decidir que se va a imprimir dependiendo del tipo de trabajo.
+        << "Tipo de trabajo: " << (tipoTrabajo == aplicado ? "Aplicado" : "Investigacion") << endl 
+        << "Comentarios generales: " << getComentariosGenerales() << endl
         << "Nota final: " << getNotaFinal() << endl
-        << "Resultado final: ";
-        mostrarResultadoFinal();
+        // se utilizÃ³ un operador ternario para decidir que se va a imprimir dependiendo del resultado final.
+        << "Resultado final: " << (resultadoFinal == aprobado ? "Aprobado" : "Reprobado") << endl;
+        
 }
 
 /// <summary>
-/// Método que es invocado desde BaseDeDatos para llenar la información restante de un acta,
-/// como el criterio, la nota final y el resultado final del acta.
+/// Mï¿½todo que es invocado desde BaseDeDatos para llenar (evaluar) la informaciï¿½n restante de un acta,
+/// como las notas y comentarios de los criterios, la nota final y el resultado final del acta.
 /// </summary>
 void Acta::llenarActa(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
@@ -74,15 +76,12 @@ void Acta::llenarActa(){
     fflush(stdin);
     getline(cin, this->comentariosGenerales);
     calcularNotaFinal();
-    if(this->notaFinal < 3.5){
-        this->resultadoFinal = reprobado;
-    }else{
-        this->resultadoFinal = aprobado;
-    }
+    // se utilizÃ³ un operador ternario para decidir el valor del resultado final dependiendo de la nota final.
+    this-> resultadoFinal = this->notaFinal < 3.5 ? reprobado : aprobado;
 }
 
 /// <summary>
-/// Método que es invocado desde BaseDeDatos para exportar la información de cada acta a cualquier tipo de archivo. 
+/// Mï¿½todo que es invocado desde BaseDeDatos para exportar la informaciï¿½n de cada acta a cualquier tipo de archivo. 
 /// </summary>
 void Acta::exportarActa(){
     //Se utiliza la libreria ofstream para poder escribir en archivos aparte como un .txt
@@ -97,26 +96,28 @@ void Acta::exportarActa(){
         << "Director: " << getDirector() << endl
         << "Codirector: " << getCodirector() << endl
         << "Jurado 1: " << getJurado1() << endl
-        << "Jurado 2: " << getJurado2() << endl;
-        exportarTipoTrabajo(nombreArchivo);
-        cout << "Criterios:" << endl;
+        << "Jurado 2: " << getJurado2() << endl
+        // se utilizÃ³ un operador ternario para decidir que se va a imprimir dependiendo del tipo de trabajo.
+        << "Tipo de trabajo: " << (tipoTrabajo == aplicado ? "Aplicado" : "Investigacion") << endl
+        << "Criterios:" << endl;
     archivoTemp.close();
-    //pCriterio apunta al vector InfoCriterio para poder invocar métodos y datos de esa misma clase.
+    //pCriterio apunta al vector InfoCriterio para poder invocar mï¿½todos y datos de esa misma clase.
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
         pCriterio != this->criterios.end(); pCriterio++){
         pCriterio->exportarCriterio(nombreArchivo);
     }
-    //App es usado para que en vez de que los datos que estén en el documento sean eliminados o reescritos,
-    //se escriban los datos nuevos en lo último.
+    //App es usado para que en vez de que los datos que estï¿½n en el documento sean eliminados o reescritos,
+    //se escriban los datos nuevos en lo ï¿½ltimo.
     archivoTemp.open( nombreArchivo, ios::app);
     archivoTemp << "Comentarios generales: " << getComentariosGenerales() << endl
-    << "Nota final: " << getNotaFinal() << endl;
-    exportarResultadoFinal(nombreArchivo);
+    << "Nota final: " << getNotaFinal() << endl
+    // se utilizÃ³ un operador ternario para decidir que se va a imprimir dependiendo del resultado final.
+    << "Resultado final: " << (resultadoFinal == aprobado ? "Aprobado" : "Reprobado") << endl;
     archivoTemp.close();
 }
 
 /// <summary>
-/// Método que recorre el vector Criterio y calcula la nota final teniendo en cuenta la nota de cada uno de los criterios.
+/// Mï¿½todo que recorre el vector Criterio y calcula la nota final teniendo en cuenta la nota de cada uno de los criterios.
 /// </summary>
 void Acta::calcularNotaFinal(){
     for(vector<Criterio>::iterator pCriterio = this->criterios.begin();
@@ -125,23 +126,24 @@ void Acta::calcularNotaFinal(){
     }
 }
 
+/// Se dejaron comentariados estos metodos por si en algun momento vemos que se pueden utilizar.
 /// <summary>
-/// Método que es llamado desde BaseDeDatos para que imprima en pantalla el tipo de trabajo de cada una de las actas.
+/// Mï¿½todo que es llamado desde BaseDeDatos para que imprima en pantalla el tipo de trabajo de cada una de las actas.
 /// </summary>
-void Acta::mostrarTipoTrabajo(){
+/*void Acta::mostrarTipoTrabajo(){
     if(this->tipoTrabajo == aplicado){
         cout << "Aplicado" << endl;
     }else{
         cout << "Investigacion" << endl;
     }
-}
+}*/
 
 /// <summary>
-/// Método que exporta el tipo de trabajo de cada una de las actas a un archivo aparte para su próxima importación y uso.
+/// Mï¿½todo que exporta el tipo de trabajo de cada una de las actas a un archivo aparte para su prï¿½xima importaciï¿½n y uso.
 /// </summary>
-/// <param name="nombreArchivo">Recibe el nombre del archivo el cual está guardado en la variable nombreArchivo,
-///  al cual se va a exportar la información</param>
-void Acta::exportarTipoTrabajo(string nombreArchivo){
+/// <param name="nombreArchivo">Recibe el nombre del archivo el cual estï¿½ guardado en la variable nombreArchivo,
+///  al cual se va a exportar la informaciï¿½n</param>
+/*void Acta::exportarTipoTrabajo(string nombreArchivo){
     ofstream archivoTemp;
     archivoTemp.open(nombreArchivo);
     if(this->tipoTrabajo == aplicado){
@@ -150,25 +152,25 @@ void Acta::exportarTipoTrabajo(string nombreArchivo){
         archivoTemp << "Investigacion" << endl;
     }
     archivoTemp.close();
-}
+}*/
 
 /// <summary>
-/// Método que imprime en pantalla el estado de calificación actual de un acta, el cual se encuentra en el enum Resultado.
+/// Mï¿½todo que imprime en pantalla el estado de calificaciï¿½n actual de un acta, el cual se encuentra en el enum Resultado.
 /// </summary>
-void Acta::mostrarResultadoFinal(){
+/*void Acta::mostrarResultadoFinal(){
     if(this->resultadoFinal == aprobado){
         cout << "Aprobado" << endl;
     }else{
         cout << "Reprobado" << endl;
     }
-}
+}*/
 
 /// <summary>
-/// Método que exporta el estado de calificación de cada una de las actas, en este caso el enum Resultado(aprobado o reprobado).
+/// Mï¿½todo que exporta el estado de calificaciï¿½n de cada una de las actas, en este caso el enum Resultado(aprobado o reprobado).
 /// </summary>
-/// <param name="nombreArchivo">Recibe el nombre del archivo el cual está guardado en la variable nombreArchivo,
-///  al cual se va a exportar la información</param>
-void Acta::exportarResultadoFinal(string nombreArchivo){
+/// <param name="nombreArchivo">Recibe el nombre del archivo el cual estï¿½ guardado en la variable nombreArchivo,
+///  al cual se va a exportar la informaciï¿½n</param>
+/*void Acta::exportarResultadoFinal(string nombreArchivo){
     ofstream archivoTemp;
     archivoTemp.open(nombreArchivo);
     if(this->resultadoFinal == aprobado){
@@ -177,7 +179,7 @@ void Acta::exportarResultadoFinal(string nombreArchivo){
         archivoTemp << "Reprobado" << endl;
     }
     archivoTemp.close();
-}
+}*/
 
 int Acta::getCodigo(){
     return this->codigo;

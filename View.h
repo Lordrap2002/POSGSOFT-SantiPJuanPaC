@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdlib.h>
 #include "BaseDeDatos.h"
-#include "Criterio.h"
 
 using namespace std;
 
@@ -12,7 +11,6 @@ class View
 {
 private:
 	BaseDeDatos sistema;
-	Criterio criterios;
 
 public:
 	View();

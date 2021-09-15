@@ -35,11 +35,15 @@ public:
 	InfoCriterio crearInfoCriterio();
 	void importarDatos();
 	void exportarDatos();
-	Trabajo identificarTipoTrabajo(int opcion);
-	Resultado identificarResultado(int opcion);
+	//Trabajo identificarTipoTrabajo(int opcion);
+	//Resultado identificarResultado(int opcion);
 	bool existeCriterio(int id);
 
 	//sets/gets
+	int getConsecutivoDeActas();
+	void setConsecutivoDeActas(int consecutivoDeActas);
+	int getCantCriterios();
+	void setCantCriterios(int cantCriterios);
 	vector<Acta> getActasPendientes();
 	void setActasPendientes(vector<Acta> acta);
 	vector<Acta> getActasCalificadas();
